@@ -148,6 +148,9 @@
   <data name="jigglypuff_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jigglypuff_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="map_sprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\map_sprite.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mew.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
