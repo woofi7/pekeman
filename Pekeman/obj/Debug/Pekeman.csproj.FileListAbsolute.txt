@@ -1,1 +1,2 @@
 H:\workspace\Pekeman\Pekeman\bin\Debug\Pekeman.exe.config
+C:\Users\1535216\Desktop\Pekeman\Pekeman\bin\Debug\Pekeman.exe.config
