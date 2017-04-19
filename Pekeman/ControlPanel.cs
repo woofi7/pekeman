@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Pekeman
 {
-    public partial class Form1 : Form
+    public partial class ControlPanel : CustomGUI
     {
-        public Form1()
+        public ControlPanel()
         {
             InitializeComponent();
-            DoubleBuffered = true;
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
         }
     }
 }

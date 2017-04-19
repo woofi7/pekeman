@@ -46,20 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Chat.Designer.cs">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomGUI.Designer.cs">
+      <DependentUpon>CustomGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pekedex.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pekedex.Designer.cs">
-      <DependentUpon>Pekedex.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomGUI.resx">
+      <DependentUpon>CustomGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,6 +92,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,6 +106,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pikachu_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pikachu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pidgey.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pidgey_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bulbasaur_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bulbasaur.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mew.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mew_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\charmander_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\charmander.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\squirtle_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\squirtle.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chikorita_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chikorita.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jigglypuff_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jigglypuff.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rattata_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rattata.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caterpie_back.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caterpie.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map_sprite.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
