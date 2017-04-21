@@ -28,31 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Chat));
+            this.Content = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // Content
             // 
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 90);
-            this.label1.TabIndex = 0;
+            this.Content.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Content.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Content.Location = new System.Drawing.Point(5, 5);
+            this.Content.Name = "Content";
+            this.Content.Size = new System.Drawing.Size(390, 130);
+            this.Content.TabIndex = 0;
+            this.Content.Text = resources.GetString("Content.Text");
             // 
             // Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Content);
             this.Name = "Chat";
-            this.Size = new System.Drawing.Size(300, 100);
+            this.Size = new System.Drawing.Size(400, 140);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Content;
     }
 }

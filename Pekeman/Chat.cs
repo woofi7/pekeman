@@ -12,13 +12,6 @@ namespace Pekeman
 {
     public partial class Chat : ControlPanel
     {
-        [Description("Text"), DefaultValue(""), DisplayName("Text")]
-        public new string Text
-        {
-            get;
-            set;
-        }
-
         public Chat()
         {
             InitializeComponent();

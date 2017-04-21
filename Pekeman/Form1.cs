@@ -12,10 +12,14 @@ namespace Pekeman
 {
     public partial class Form1 : Form
     {
+        private Map map = new Map();
+
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            map.LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

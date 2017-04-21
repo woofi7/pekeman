@@ -36,26 +36,29 @@
             // 
             // customGUI1
             // 
+            this.customGUI1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customGUI1.BackColor = System.Drawing.Color.Transparent;
-            this.customGUI1.Location = new System.Drawing.Point(569, 0);
+            this.customGUI1.Location = new System.Drawing.Point(808, 0);
             this.customGUI1.Name = "customGUI1";
             this.customGUI1.Size = new System.Drawing.Size(200, 300);
             this.customGUI1.TabIndex = 2;
             // 
             // controlPanel1
             // 
+            this.controlPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.controlPanel1.Location = new System.Drawing.Point(569, 409);
+            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
             this.controlPanel1.Name = "controlPanel1";
             this.controlPanel1.Size = new System.Drawing.Size(200, 200);
             this.controlPanel1.TabIndex = 1;
             // 
             // chat1
             // 
+            this.chat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chat1.BackColor = System.Drawing.Color.Transparent;
-            this.chat1.Location = new System.Drawing.Point(0, 509);
+            this.chat1.Location = new System.Drawing.Point(0, 589);
             this.chat1.Name = "chat1";
-            this.chat1.Size = new System.Drawing.Size(300, 100);
+            this.chat1.Size = new System.Drawing.Size(400, 140);
             this.chat1.TabIndex = 0;
             // 
             // Form1
@@ -63,10 +66,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(769, 609);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.customGUI1);
             this.Controls.Add(this.controlPanel1);
             this.Controls.Add(this.chat1);
+            this.MinimumSize = new System.Drawing.Size(650, 650);
             this.Name = "Form1";
             this.Text = "Pékéman";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);

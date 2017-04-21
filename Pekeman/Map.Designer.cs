@@ -1,6 +1,6 @@
 ﻿namespace Pekeman
 {
-    partial class CustomGUI
+    partial class Map
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,18 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // CustomGUI
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Name = "CustomGUI";
-            this.Size = new System.Drawing.Size(350, 150);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CustomGUI_Paint);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
