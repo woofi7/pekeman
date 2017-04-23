@@ -28,29 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.customGUI1 = new Pekeman.CustomGUI();
-            this.controlPanel1 = new Pekeman.ControlPanel();
             this.chat1 = new Pekeman.Chat();
+            this.controlPanel1 = new Pekeman.ControlPanel();
+            this.customGUI1 = new Pekeman.CustomGUI();
+            this.map1 = new Pekeman.Map();
+            this.map1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // customGUI1
-            // 
-            this.customGUI1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customGUI1.BackColor = System.Drawing.Color.Transparent;
-            this.customGUI1.Location = new System.Drawing.Point(808, 0);
-            this.customGUI1.Name = "customGUI1";
-            this.customGUI1.Size = new System.Drawing.Size(200, 300);
-            this.customGUI1.TabIndex = 2;
-            // 
-            // controlPanel1
-            // 
-            this.controlPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
-            this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(200, 200);
-            this.controlPanel1.TabIndex = 1;
             // 
             // chat1
             // 
@@ -61,19 +44,49 @@
             this.chat1.Size = new System.Drawing.Size(400, 140);
             this.chat1.TabIndex = 0;
             // 
+            // controlPanel1
+            // 
+            this.controlPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
+            this.controlPanel1.Name = "controlPanel1";
+            this.controlPanel1.Size = new System.Drawing.Size(200, 200);
+            this.controlPanel1.TabIndex = 1;
+            // 
+            // customGUI1
+            // 
+            this.customGUI1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customGUI1.BackColor = System.Drawing.Color.Transparent;
+            this.customGUI1.Location = new System.Drawing.Point(808, 0);
+            this.customGUI1.Name = "customGUI1";
+            this.customGUI1.Size = new System.Drawing.Size(200, 300);
+            this.customGUI1.TabIndex = 2;
+            // 
+            // map1
+            // 
+            this.map1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.map1.Controls.Add(this.customGUI1);
+            this.map1.Controls.Add(this.controlPanel1);
+            this.map1.Controls.Add(this.chat1);
+            this.map1.Location = new System.Drawing.Point(0, 0);
+            this.map1.Name = "map1";
+            this.map1.Size = new System.Drawing.Size(1008, 729);
+            this.map1.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.customGUI1);
-            this.Controls.Add(this.controlPanel1);
-            this.Controls.Add(this.chat1);
+            this.Controls.Add(this.map1);
             this.MinimumSize = new System.Drawing.Size(650, 650);
             this.Name = "Form1";
             this.Text = "Pékéman";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.map1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -83,6 +96,7 @@
         private Chat chat1;
         private ControlPanel controlPanel1;
         private CustomGUI customGUI1;
+        private Map map1;
     }
 }
 

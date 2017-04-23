@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.SuspendLayout();
+            // 
+            // Map
+            // 
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Map_Paint);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

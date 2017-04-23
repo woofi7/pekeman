@@ -18,8 +18,6 @@ namespace Pekeman
         {
             InitializeComponent();
             DoubleBuffered = true;
-
-            map.LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
