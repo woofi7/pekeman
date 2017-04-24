@@ -28,39 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.chat1 = new Pekeman.Chat();
-            this.controlPanel1 = new Pekeman.ControlPanel();
-            this.customGUI1 = new Pekeman.CustomGUI();
+            this.components = new System.ComponentModel.Container();
+            this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
+            this.player = new Pekeman.Player();
             this.map1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // chat1
+            // timerRender
             // 
-            this.chat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chat1.BackColor = System.Drawing.Color.Transparent;
-            this.chat1.Location = new System.Drawing.Point(0, 589);
-            this.chat1.Name = "chat1";
-            this.chat1.Size = new System.Drawing.Size(400, 140);
-            this.chat1.TabIndex = 0;
-            // 
-            // controlPanel1
-            // 
-            this.controlPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
-            this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(200, 200);
-            this.controlPanel1.TabIndex = 1;
-            // 
-            // customGUI1
-            // 
-            this.customGUI1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customGUI1.BackColor = System.Drawing.Color.Transparent;
-            this.customGUI1.Location = new System.Drawing.Point(808, 0);
-            this.customGUI1.Name = "customGUI1";
-            this.customGUI1.Size = new System.Drawing.Size(200, 300);
-            this.customGUI1.TabIndex = 2;
+            this.timerRender.Enabled = true;
+            this.timerRender.Interval = 30;
+            this.timerRender.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // map1
             // 
@@ -68,13 +47,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.map1.Controls.Add(this.customGUI1);
-            this.map1.Controls.Add(this.controlPanel1);
-            this.map1.Controls.Add(this.chat1);
+            this.map1.Controls.Add(this.player);
             this.map1.Location = new System.Drawing.Point(0, 0);
             this.map1.Name = "map1";
             this.map1.Size = new System.Drawing.Size(1008, 729);
             this.map1.TabIndex = 3;
+            // 
+            // player
+            // 
+            this.player.Angle = 0D;
+            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.player.Location = new System.Drawing.Point(492, 312);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(25, 25);
+            this.player.Speed = 1D;
+            this.player.TabIndex = 4;
             // 
             // Form1
             // 
@@ -82,21 +69,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.map1);
+            this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(650, 650);
             this.Name = "Form1";
             this.Text = "Pékéman";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.map1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Chat chat1;
-        private ControlPanel controlPanel1;
-        private CustomGUI customGUI1;
         private Map map1;
+        private Player player;
+        private System.Windows.Forms.Timer timerRender;
     }
 }
 

@@ -78,7 +78,7 @@ namespace Pekeman
             int centeredX = middlePoint.X - _mapData.Size.Width * 32 / 2;
             int centeredY = middlePoint.Y - _mapData.Size.Height * 32 / 2;
 
-            for (int x = 0; x < Width / TILE_SIZE * 2; x++)
+            /*for (int x = 0; x < Width / TILE_SIZE * 2; x++)
             {
                 for (int y = 0; y < Height / TILE_SIZE * 2; y++)
                 {
@@ -87,7 +87,7 @@ namespace Pekeman
 
                     g.DrawImageUnscaled(fillImage, posY, posX, TILE_SIZE * 2, TILE_SIZE * 2);
                 }
-            }
+            }*/
 
             for (int x = 0; x < _mapData.Size.Width; x++)
             {
