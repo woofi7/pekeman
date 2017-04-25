@@ -13,16 +13,18 @@ namespace Pekeman
 {
     public partial class Form1 : Form
     {
-        private Map map = new Map();
+        private Player _player = new Player();
 
-        private bool right;
-        private bool left;
-        private bool up;
-        private bool down;
+        private bool _right;
+        private bool _left;
+        private bool _up;
+        private bool _down;
 
         public Form1()
         {
             InitializeComponent();
+            _player.SetInitialPos(504, 364);
+            map1.player = _player;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -34,20 +36,16 @@ namespace Pekeman
             switch (e.KeyCode)
             {
                 case Keys.A:
-                case Keys.Left:
-                    left = true;
+                    _left = true;
                     break;
                 case Keys.D:
-                case Keys.Right:
-                    right = true;
+                    _right = true;
                     break;
                 case Keys.W:
-                case Keys.Up:
-                    up = true;
+                    _up = true;
                     break;
                 case Keys.S:
-                case Keys.Down:
-                    down = true;
+                    _down = true;
                     break;
             }
         }
@@ -57,73 +55,70 @@ namespace Pekeman
             switch (e.KeyCode)
             {
                 case Keys.A:
-                    left = false;
+                    _left = false;
                     break;
                 case Keys.D:
-                    right = false;
+                    _right = false;
                     break;
                 case Keys.W:
-                    up = false;
+                    _up = false;
                     break;
                 case Keys.S:
-                    down = false;
+                    _down = false;
                     break;
             }
         }
 
-        private Stopwatch _stopwatch = Stopwatch.StartNew();
+        private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
         private void timer1_Tick(object sender, EventArgs e)
         {
             long ellapsed = _stopwatch.ElapsedMilliseconds;
             _stopwatch.Reset();
             _stopwatch.Restart();
 
-            const float baseSpeed = 256; // Pixel/seconds
+            const float baseSpeed = 128; // Pixel/seconds
             float ellapsedSeconds = ellapsed / 1000f;
             float distance = 0;
 
-            float dx = 0;
-            float dy = 0;
-
-            if (right)
+            if (_right)
             {
                 distance = ellapsedSeconds * baseSpeed;
-                player.Angle = 0;
+                _player.Angle = 0;
             }
-            else if (left)
+            else if (_left)
             {
                 distance = ellapsedSeconds * baseSpeed;
-                player.Angle = Math.PI;
+                _player.Angle = Math.PI;
             }
 
-            if (up)
+            if (_up)
             {
                 distance = ellapsedSeconds * baseSpeed;
-                player.Angle = Math.PI / 2;
-                if (right)
+                _player.Angle = Math.PI / 2;
+                if (_right)
                 {
-                    player.Angle -= Math.PI / 4;
+                    _player.Angle -= Math.PI / 4;
                 }
-                else if (left)
+                else if (_left)
                 {
-                    player.Angle += Math.PI / 4;
+                    _player.Angle += Math.PI / 4;
                 }
 
             }
-            else if (down)
+            else if (_down)
             {
                 distance = ellapsedSeconds * baseSpeed;
-                player.Angle = 3 * Math.PI / 2;
-                if (right)
+                _player.Angle = 3 * Math.PI / 2;
+                if (_right)
                 {
-                    player.Angle += Math.PI / 4;
+                    _player.Angle += Math.PI / 4;
                 }
-                else if (left)
+                else if (_left)
                 {
-                    player.Angle -= Math.PI / 4;
+                    _player.Angle -= Math.PI / 4;
                 }
             }
-            player.MovPlayer(distance);
+            map1.MovePlayer(distance);
         }
     }
 }

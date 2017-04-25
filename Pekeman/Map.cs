@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 
 namespace Pekeman
 {
     public partial class Map : Panel
     {
+        public Player player;
+
         private MapData _mapData = new MapData();
         private Image[] sprite = new Image[2048];
-        private Image fillImage;
-        private const int TILE_SIZE = 32;
+        private Image _fillImage;
+        private const int TileSize = 32;
+        private Point _centerPoint;
 
         public Map()
         {
@@ -38,28 +35,25 @@ namespace Pekeman
             }
         }
 
-        public void LoadMapSprite(String file)
+        public void LoadMapSprite(string file)
         {
-            Graphics graphics;
+            var img = Image.FromFile(file);
+            var width = img.Width / TileSize;
+            var heigth = img.Height / TileSize;
 
-            Image img = Image.FromFile(file);
-            int width = img.Width / TILE_SIZE;
-            int heigth = img.Height / TILE_SIZE;
-
-            fillImage = new Bitmap(TILE_SIZE * 2, TILE_SIZE * 2);
-            graphics = Graphics.FromImage(fillImage);
-            graphics.DrawImage(img, new Rectangle(0, 0, TILE_SIZE * 2, TILE_SIZE * 2), new Rectangle(img.Width - TILE_SIZE * 2, img.Height - TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE * 2), GraphicsUnit.Pixel);
+            _fillImage = new Bitmap(TileSize * 2, TileSize * 2);
+            var graphics = Graphics.FromImage(_fillImage);
+            graphics.DrawImage(img, new Rectangle(0, 0, TileSize * 2, TileSize * 2), new Rectangle(img.Width - TileSize * 2, img.Height - TileSize * 2, TileSize * 2, TileSize * 2), GraphicsUnit.Pixel);
             graphics.Dispose();
 
-            for (int i = 0; i < width; i++)
+            for (var i = 0; i < width; i++)
             {
-                for (int j = 0; j < heigth; j++)
+                for (var j = 0; j < heigth; j++)
                 {
-                    int index = i * heigth + j;
-
+                    var index = i * heigth + j;
                     sprite[index] = new Bitmap(width, heigth);
                     graphics = Graphics.FromImage(sprite[index]);
-                    graphics.DrawImage(img, new Rectangle(0, 0, TILE_SIZE, TILE_SIZE), new Rectangle(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE), GraphicsUnit.Pixel);
+                    graphics.DrawImage(img, new Rectangle(0, 0, TileSize, TileSize), new Rectangle(j * TileSize, i * TileSize, TileSize, TileSize), GraphicsUnit.Pixel);
                     graphics.Dispose();
                 }
             }
@@ -73,22 +67,39 @@ namespace Pekeman
             }
 
             Graphics g = e.Graphics;
+            _centerPoint = new Point(Width / 2, Height / 2);
 
-            Point middlePoint = new Point(Width / 2, Height / 2);
-            int centeredX = middlePoint.X - _mapData.Size.Width * 32 / 2;
-            int centeredY = middlePoint.Y - _mapData.Size.Height * 32 / 2;
+            Debug.WriteLine(player._x + " " + player._y);
 
-            /*for (int x = 0; x < Width / TILE_SIZE * 2; x++)
+            double centeredXCorner = player._x - _mapData.Size.Width * 32 / 2;
+            double centeredYCorner = player._y - _mapData.Size.Height * 32 / 2;
+
+            //DrawOutMap(centeredY, centeredX, g);
+            DrawMap(centeredYCorner, centeredXCorner, g);
+            DrawPlayer(g);
+        }
+
+        private void DrawPlayer(Graphics g)
+        {
+            g.FillEllipse(Brushes.Red, _centerPoint.X - 5, _centerPoint.Y - 5, 10, 10);
+        }
+
+        private void DrawOutMap(int centeredYCorner, int centeredXCorner, Graphics g)
+        {
+            for (int x = 0; x < Width / TileSize * 2; x++)
             {
-                for (int y = 0; y < Height / TILE_SIZE * 2; y++)
+                for (int y = 0; y < Height / TileSize * 2; y++)
                 {
-                    int posY = (y * TILE_SIZE * 2) - (centeredY - (centeredY / 64) * 32);
-                    int posX = (x * TILE_SIZE * 2) - (centeredX - (centeredX / 64) * 32);
+                    int posY = (y * TileSize * 2) - (centeredYCorner - (centeredYCorner / 64) * 32);
+                    int posX = (x * TileSize * 2) - (centeredXCorner - (centeredXCorner / 64) * 32);
 
-                    g.DrawImageUnscaled(fillImage, posY, posX, TILE_SIZE * 2, TILE_SIZE * 2);
+                    g.DrawImageUnscaled(_fillImage, posY, posX, TileSize * 2, TileSize * 2);
                 }
-            }*/
+            }
+        }
 
+        private void DrawMap(double centeredYCorner, double centeredXCorner, Graphics g)
+        {
             for (int x = 0; x < _mapData.Size.Width; x++)
             {
                 for (int y = 0; y < _mapData.Size.Height; y++)
@@ -96,15 +107,13 @@ namespace Pekeman
                     int tileIndexBackground = _mapData.Layers.Background[x * _mapData.Size.Width + y];
                     int tileIndexForeground = _mapData.Layers.Foreground[x * _mapData.Size.Width + y];
 
-                    int posY = centeredY + y * TILE_SIZE;
-                    int posX = centeredX + x * TILE_SIZE;
+                    int posY = (int) centeredYCorner + y * TileSize;
+                    int posX = (int) centeredXCorner + x * TileSize;
 
-                    g.DrawImageUnscaled(sprite[tileIndexBackground], posX, posY, TILE_SIZE, TILE_SIZE);
-                    g.DrawImageUnscaled(sprite[tileIndexForeground], posX, posY, TILE_SIZE, TILE_SIZE);
+                    g.DrawImageUnscaled(sprite[tileIndexBackground], posX, posY, TileSize, TileSize);
+                    g.DrawImageUnscaled(sprite[tileIndexForeground], posX, posY, TileSize, TileSize);
                 }
             }
-
-            g.FillEllipse(Brushes.Red, middlePoint.X - 5, middlePoint.Y - 5, 10, 10);
         }
 
         [JsonObject(MemberSerialization.OptIn)]
@@ -177,6 +186,15 @@ namespace Pekeman
         {
             EnterPokedex,
             MeetPokemon
+        }
+
+        public void MovePlayer(float distance)
+        {
+            if (distance != 0)
+            {
+                player.MovePlayer(distance);
+                Refresh();
+            }
         }
     }
 }

@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
-            this.player = new Pekeman.Player();
             this.map1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,21 +46,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.map1.Controls.Add(this.player);
             this.map1.Location = new System.Drawing.Point(0, 0);
             this.map1.Name = "map1";
             this.map1.Size = new System.Drawing.Size(1008, 729);
             this.map1.TabIndex = 3;
-            // 
-            // player
-            // 
-            this.player.Angle = 0D;
-            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.player.Location = new System.Drawing.Point(492, 312);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(25, 25);
-            this.player.Speed = 1D;
-            this.player.TabIndex = 4;
             // 
             // Form1
             // 
@@ -84,7 +72,6 @@
 
         #endregion
         private Map map1;
-        private Player player;
         private System.Windows.Forms.Timer timerRender;
     }
 }
