@@ -21,6 +21,7 @@ namespace Pekeman
         public Map()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         public void LoadMap(String file)
@@ -63,7 +64,7 @@ namespace Pekeman
         {
             if (_mapData.Size == null)
             {
-                LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
+                LoadMap("mapTemplate.json");
             }
 
             Graphics g = e.Graphics;
@@ -74,7 +75,7 @@ namespace Pekeman
             double centeredXCorner = player._x - _mapData.Size.Width * 32 / 2;
             double centeredYCorner = player._y - _mapData.Size.Height * 32 / 2;
 
-            //DrawOutMap(centeredY, centeredX, g);
+            DrawOutMap(centeredYCorner, centeredXCorner, g);
             DrawMap(centeredYCorner, centeredXCorner, g);
             DrawPlayer(g);
         }
@@ -84,14 +85,14 @@ namespace Pekeman
             g.FillEllipse(Brushes.Red, _centerPoint.X - 5, _centerPoint.Y - 5, 10, 10);
         }
 
-        private void DrawOutMap(int centeredYCorner, int centeredXCorner, Graphics g)
+        private void DrawOutMap(double centeredYCorner, double centeredXCorner, Graphics g)
         {
             for (int x = 0; x < Width / TileSize * 2; x++)
             {
                 for (int y = 0; y < Height / TileSize * 2; y++)
                 {
-                    int posY = (y * TileSize * 2) - (centeredYCorner - (centeredYCorner / 64) * 32);
-                    int posX = (x * TileSize * 2) - (centeredXCorner - (centeredXCorner / 64) * 32);
+                    int posY = (y * TileSize * 2) - ((int) centeredYCorner - ((int) centeredYCorner / 64) * 32);
+                    int posX = (x * TileSize * 2) - ((int) centeredXCorner - ((int) centeredXCorner / 64) * 32);
 
                     g.DrawImageUnscaled(_fillImage, posY, posX, TileSize * 2, TileSize * 2);
                 }
