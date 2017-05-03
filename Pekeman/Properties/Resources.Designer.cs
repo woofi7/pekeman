@@ -143,6 +143,66 @@ namespace Pekeman.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fleche_b {
+            get {
+                object obj = ResourceManager.GetObject("fleche_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_d {
+            get {
+                object obj = ResourceManager.GetObject("fleche_d", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_g {
+            get {
+                object obj = ResourceManager.GetObject("fleche_g", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_h {
+            get {
+                object obj = ResourceManager.GetObject("fleche_h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jigglypuff {
+            get {
+                object obj = ResourceManager.GetObject("jigglypuff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jigglypuff_back {
+            get {
+                object obj = ResourceManager.GetObject("jigglypuff_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap map_sprite {
             get {
                 object obj = ResourceManager.GetObject("map_sprite", resourceCulture);
@@ -236,6 +296,16 @@ namespace Pekeman.Properties {
         internal static System.Drawing.Bitmap pikachu_back {
             get {
                 object obj = ResourceManager.GetObject("pikachu_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player {
+            get {
+                object obj = ResourceManager.GetObject("player", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

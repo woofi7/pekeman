@@ -102,34 +102,27 @@ namespace Pekeman
                 _player.Angle = Math.PI;
             }
 
-            if (_up)
+            else if (_up)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = Math.PI / 2;
-                if (_right)
-                {
-                    _player.Angle -= Math.PI / 4;
-                }
-                else if (_left)
-                {
-                    _player.Angle += Math.PI / 4;
-                }
-
             }
             else if (_down)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = 3 * Math.PI / 2;
-                if (_right)
-                {
-                    _player.Angle += Math.PI / 4;
-                }
-                else if (_left)
-                {
-                    _player.Angle -= Math.PI / 4;
-                }
             }
             map1.MovePlayer(distance);
+        }
+
+        private void DeplacementJoueur_Tick(object sender, EventArgs e)
+        {
+            _player.MovementAnimation++;
+
+            if (_player.MovementAnimation == 3)
+            {
+                _player.MovementAnimation = 0;
+            }
         }
     }
 }

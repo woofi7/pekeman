@@ -205,6 +205,21 @@
     <None Include="Resources\map_sprite.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_h.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\unknown.jpg" />
   </ItemGroup>
   <ItemGroup>
