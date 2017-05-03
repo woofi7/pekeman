@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -32,8 +33,10 @@ namespace Pekeman
             using (JsonReader reader = new JsonTextReader(sw))
             {
                 _mapData = serializer.Deserialize<MapData>(reader);
-                LoadMapSprite(_mapData.TileSet);
             }
+            LoadMapSprite(_mapData.TileSet);
+            player._x = _mapData.Spawn.X * 32 + 10;
+            player._y = _mapData.Spawn.Y * 32 + 10;
         }
 
         public void LoadMapSprite(string file)
@@ -64,25 +67,43 @@ namespace Pekeman
         {
             if (_mapData.Size == null)
             {
-                LoadMap("mapTemplate.json");
+                LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
             }
+
 
             Graphics g = e.Graphics;
             _centerPoint = new Point(Width / 2, Height / 2);
 
-            Debug.WriteLine(player._x + " " + player._y);
-
-            double centeredXCorner = player._x - _mapData.Size.Width * 32 / 2;
-            double centeredYCorner = player._y - _mapData.Size.Height * 32 / 2;
+            double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player._x);
+            double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player._y);
 
             DrawOutMap(centeredYCorner, centeredXCorner, g);
-            DrawMap(centeredYCorner, centeredXCorner, g);
+            DrawBackground(centeredYCorner, centeredXCorner, g);
             DrawPlayer(g);
+            DrawForeground(centeredYCorner, centeredXCorner, g);
+            DrawDebug(g);
+        }
+
+        private void DrawDebug(Graphics g)
+        {
+            if (Debug.DebugMode)
+            {
+                Brush myBrush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
+                g.FillRectangle(myBrush, 0, 0, Width / 6, Height / 4);
+
+                Font myFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                g.DrawString("Debug mode", myFont, Brushes.White, 0, 0);
+                g.DrawString("x: ", myFont, Brushes.White, 0, 18);
+                g.DrawString("y: ", myFont, Brushes.White, 0, 36);
+                g.DrawString((player._x / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
+                g.DrawString((player._y / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
+
+            }
         }
 
         private void DrawPlayer(Graphics g)
         {
-            g.FillEllipse(Brushes.Red, _centerPoint.X - 5, _centerPoint.Y - 5, 10, 10);
+            g.FillEllipse(Brushes.Red, _centerPoint.X - 10, _centerPoint.Y - 10, 10, 10);
         }
 
         private void DrawOutMap(double centeredYCorner, double centeredXCorner, Graphics g)
@@ -91,27 +112,41 @@ namespace Pekeman
             {
                 for (int y = 0; y < Height / TileSize * 2; y++)
                 {
-                    int posY = (y * TileSize * 2) - ((int) centeredYCorner - ((int) centeredYCorner / 64) * 32);
-                    int posX = (x * TileSize * 2) - ((int) centeredXCorner - ((int) centeredXCorner / 64) * 32);
+                    int posY = y * TileSize * 2 + (int)( centeredYCorner - centeredYCorner / 64) - Height / 2;
+                    int posX = x * TileSize * 2 + (int)( centeredXCorner - centeredXCorner / 64) - Width / 2;
 
-                    g.DrawImageUnscaled(_fillImage, posY, posX, TileSize * 2, TileSize * 2);
+                    g.DrawImageUnscaled(_fillImage, posX, posY, TileSize * 2, TileSize * 2);
                 }
             }
         }
 
-        private void DrawMap(double centeredYCorner, double centeredXCorner, Graphics g)
+        private void DrawBackground(double centeredYCorner, double centeredXCorner, Graphics g)
         {
             for (int x = 0; x < _mapData.Size.Width; x++)
             {
                 for (int y = 0; y < _mapData.Size.Height; y++)
                 {
                     int tileIndexBackground = _mapData.Layers.Background[x * _mapData.Size.Width + y];
-                    int tileIndexForeground = _mapData.Layers.Foreground[x * _mapData.Size.Width + y];
 
                     int posY = (int) centeredYCorner + y * TileSize;
                     int posX = (int) centeredXCorner + x * TileSize;
 
                     g.DrawImageUnscaled(sprite[tileIndexBackground], posX, posY, TileSize, TileSize);
+                }
+            }
+        }
+
+        private void DrawForeground(double centeredYCorner, double centeredXCorner, Graphics g)
+        {
+            for (int x = 0; x < _mapData.Size.Width; x++)
+            {
+                for (int y = 0; y < _mapData.Size.Height; y++)
+                {
+                    int tileIndexForeground = _mapData.Layers.Foreground[x * _mapData.Size.Width + y];
+
+                    int posY = (int) centeredYCorner + y * TileSize;
+                    int posX = (int) centeredXCorner + x * TileSize;
+
                     g.DrawImageUnscaled(sprite[tileIndexForeground], posX, posY, TileSize, TileSize);
                 }
             }
@@ -128,6 +163,9 @@ namespace Pekeman
 
             [JsonProperty("size")]
             public MapSize Size { get; set; }
+
+            [JsonProperty("spawn")]
+            public MapPos Spawn { get; set; }
 
             [JsonProperty("layers")]
             public MapLayers Layers { get; set; }
@@ -177,10 +215,20 @@ namespace Pekeman
         public class MapArea
         {
             [JsonProperty("from")]
-            public MapSize From { get; set; }
+            public MapPos From { get; set; }
 
             [JsonProperty("to")]
-            public MapSize To { get; set; }
+            public MapPos To { get; set; }
+        }
+
+        [JsonObject(MemberSerialization.OptIn)]
+        public class MapPos
+        {
+            [JsonProperty("x")]
+            public int X { get; private set; }
+
+            [JsonProperty("y")]
+            public int Y { get; private set; }
         }
 
         public enum EventTypeEnum
@@ -193,7 +241,32 @@ namespace Pekeman
         {
             if (distance != 0)
             {
+                double oldX = player._x;
+                double oldY = player._y;
                 player.MovePlayer(distance);
+
+                int posX = (int) Math.Floor(player._x / 32);
+                int posY = (int) Math.Floor(player._y / 32);
+
+
+                if (posX < 0 || posX > _mapData.Size.Width - 1)
+                {
+                    player._x = oldX;
+                    posX = (int) Math.Floor(player._x / 32);
+                }
+                else if (posY < 0 || posY > _mapData.Size.Height - 1)
+                {
+                    player._y = oldY;
+                    posY = (int) Math.Floor(player._y / 32);
+                }
+
+                int collisionIndex = posX * _mapData.Size.Width + posY;
+                if (!_mapData.Layers.Collision[collisionIndex])
+                {
+                    player._x = oldX;
+                    player._y = oldY;
+                }
+
                 Refresh();
             }
         }

@@ -23,7 +23,6 @@ namespace Pekeman
         public Form1()
         {
             InitializeComponent();
-            _player.SetInitialPos(504, 364);
             map1.player = _player;
         }
 
@@ -36,15 +35,19 @@ namespace Pekeman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     _left = true;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     _right = true;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     _up = true;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     _down = true;
                     break;
             }
@@ -55,16 +58,24 @@ namespace Pekeman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     _left = false;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     _right = false;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     _up = false;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     _down = false;
+                    break;
+                case Keys.F3:
+                    Debug.DebugMode = !Debug.DebugMode;
+                    map1.Refresh();
                     break;
             }
         }
