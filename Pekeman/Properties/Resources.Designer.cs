@@ -183,26 +183,6 @@ namespace Pekeman.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap jigglypuff {
-            get {
-                object obj = ResourceManager.GetObject("jigglypuff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap jigglypuff_back {
-            get {
-                object obj = ResourceManager.GetObject("jigglypuff_back", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap map_sprite {
             get {
                 object obj = ResourceManager.GetObject("map_sprite", resourceCulture);

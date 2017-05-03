@@ -11,24 +11,22 @@ using System.Windows.Forms;
 
 namespace Pekeman
 {
-    public partial class Form1 : Form
+    public partial class FrmPekeman : Form
     {
         private Player _player = new Player();
 
-        private bool _right;
-        private bool _left;
-        private bool _up;
-        private bool _down;
+        public bool _right;
+        public bool _left;
+        public bool _up;
+        public bool _down;
 
-        public Form1()
+        public FrmPekeman()
         {
             InitializeComponent();
             map1.player = _player;
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-        }
+        
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {

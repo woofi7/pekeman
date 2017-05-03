@@ -49,6 +49,7 @@
             this.Controls.Add(this.Content);
             this.Name = "Chat";
             this.Size = new System.Drawing.Size(400, 140);
+            this.Controls.SetChildIndex(this.Content, 0);
             this.ResumeLayout(false);
 
         }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Pekeman
 {
-    public partial class Chat : ControlPanel
+    public partial class Chat : CustomGUI
     {
         public Chat()
         {

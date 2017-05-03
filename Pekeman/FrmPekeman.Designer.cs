@@ -1,6 +1,6 @@
 ﻿namespace Pekeman
 {
-    partial class Form1
+    partial class FrmPekeman
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -32,8 +32,8 @@
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.DeplacementJoueur = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
-            this.chat1 = new Pekeman.Chat();
-            this.controlPanel1 = new Pekeman.ControlPanel();
+            this.ControlPanel = new Pekeman.ControlPanel(this);
+            this.Chat = new Pekeman.Chat();
             this.map1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,31 +55,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.map1.Controls.Add(this.controlPanel1);
-            this.map1.Controls.Add(this.chat1);
+            this.map1.Controls.Add(this.ControlPanel);
+            this.map1.Controls.Add(this.Chat);
             this.map1.Location = new System.Drawing.Point(0, 0);
             this.map1.Name = "map1";
             this.map1.Size = new System.Drawing.Size(1008, 729);
             this.map1.TabIndex = 3;
             // 
-            // chat1
+            // ControlPanel
             // 
-            this.chat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chat1.BackColor = System.Drawing.Color.Transparent;
-            this.chat1.Location = new System.Drawing.Point(0, 589);
-            this.chat1.Name = "chat1";
-            this.chat1.Size = new System.Drawing.Size(400, 140);
-            this.chat1.TabIndex = 0;
+            this.ControlPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ControlPanel.Location = new System.Drawing.Point(808, 529);
+            this.ControlPanel.Name = "ControlPanel";
+            this.ControlPanel.Size = new System.Drawing.Size(200, 200);
+            this.ControlPanel.TabIndex = 1;
             // 
-            // controlPanel1
+            // Chat
             // 
-            this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
-            this.controlPanel1.Name = "controlPanel1";
-            this.controlPanel1.Size = new System.Drawing.Size(200, 200);
-            this.controlPanel1.TabIndex = 1;
+            this.Chat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Chat.BackColor = System.Drawing.Color.Transparent;
+            this.Chat.Location = new System.Drawing.Point(0, 589);
+            this.Chat.Name = "Chat";
+            this.Chat.Size = new System.Drawing.Size(400, 140);
+            this.Chat.TabIndex = 0;
             // 
-            // Form1
+            // FrmPekeman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,11 +88,11 @@
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(650, 650);
-            this.Name = "Form1";
+            this.Name = "FrmPekeman";
             this.Text = "Pékéman";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.map1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -100,8 +100,8 @@
         #endregion
         private Map map1;
         private System.Windows.Forms.Timer timerRender;
-        private ControlPanel controlPanel1;
-        private Chat chat1;
+        private ControlPanel ControlPanel;
+        private Chat Chat;
         private System.Windows.Forms.Timer DeplacementJoueur;
     }
 }

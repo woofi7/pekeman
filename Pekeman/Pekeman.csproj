@@ -74,11 +74,11 @@
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Debug.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmPekeman.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmPekeman.Designer.cs">
+      <DependentUpon>FrmPekeman.cs</DependentUpon>
     </Compile>
     <Compile Include="Map.cs">
       <SubType>Component</SubType>
@@ -107,8 +107,8 @@
     <EmbeddedResource Include="ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPekeman.resx">
+      <DependentUpon>FrmPekeman.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
