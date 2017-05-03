@@ -67,7 +67,7 @@ namespace Pekeman
         {
             if (_mapData.Size == null)
             {
-                LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
+                LoadMap("mapTemplate.json");
             }
 
 

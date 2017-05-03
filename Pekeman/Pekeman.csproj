@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CasePekedex.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CasePekedex.Designer.cs">
+      <DependentUpon>CasePekedex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,9 +86,18 @@
     <Compile Include="Map.Designer.cs">
       <DependentUpon>Map.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pekedex.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pekedex.Designer.cs">
+      <DependentUpon>Pekedex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CasePekedex.resx">
+      <DependentUpon>CasePekedex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pekedex.resx">
+      <DependentUpon>Pekedex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -185,6 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\map_sprite.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unknown.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unknown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -143,26 +143,6 @@ namespace Pekeman.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap jigglypuff {
-            get {
-                object obj = ResourceManager.GetObject("jigglypuff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap jigglypuff_back {
-            get {
-                object obj = ResourceManager.GetObject("jigglypuff_back", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap map_sprite {
             get {
                 object obj = ResourceManager.GetObject("map_sprite", resourceCulture);
@@ -192,8 +172,7 @@ namespace Pekeman.Properties {
         ///			5,5,5,5,5,74,5,5,5,5
         ///		],
         ///		&quot;collision&quot;: [
-        ///			false,false,true,false,false,false,false,false,false,false,
-        ///			false,fals [le reste de la chaîne a été tronqué]&quot;;.
+        ///			false,false,true,false,false,false,false,false,false [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string mapTemplate {
             get {
@@ -297,6 +276,16 @@ namespace Pekeman.Properties {
         internal static System.Drawing.Bitmap squirtle_back {
             get {
                 object obj = ResourceManager.GetObject("squirtle_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unknown {
+            get {
+                object obj = ResourceManager.GetObject("unknown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,6 +1,6 @@
 {
 	"title": "Map de test",
-	"tileset": "D:\\workspace\\Pekeman\\map_sprite.png",
+	"tileset": "map_sprite.png",
 	"size": {
 		"width": 10,
 		"height": 10

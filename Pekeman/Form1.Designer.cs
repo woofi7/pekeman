@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
+            this.chat1 = new Pekeman.Chat();
+            this.controlPanel1 = new Pekeman.ControlPanel();
             this.map1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,10 +48,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.map1.Controls.Add(this.controlPanel1);
+            this.map1.Controls.Add(this.chat1);
             this.map1.Location = new System.Drawing.Point(0, 0);
             this.map1.Name = "map1";
             this.map1.Size = new System.Drawing.Size(1008, 729);
             this.map1.TabIndex = 3;
+            // 
+            // chat1
+            // 
+            this.chat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chat1.BackColor = System.Drawing.Color.Transparent;
+            this.chat1.Location = new System.Drawing.Point(0, 589);
+            this.chat1.Name = "chat1";
+            this.chat1.Size = new System.Drawing.Size(400, 140);
+            this.chat1.TabIndex = 0;
+            // 
+            // controlPanel1
+            // 
+            this.controlPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.controlPanel1.Location = new System.Drawing.Point(808, 529);
+            this.controlPanel1.Name = "controlPanel1";
+            this.controlPanel1.Size = new System.Drawing.Size(200, 200);
+            this.controlPanel1.TabIndex = 1;
             // 
             // Form1
             // 
@@ -73,6 +94,8 @@
         #endregion
         private Map map1;
         private System.Windows.Forms.Timer timerRender;
+        private ControlPanel controlPanel1;
+        private Chat chat1;
     }
 }
 
