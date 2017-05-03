@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Pekeman.Properties;
 
 namespace Pekeman
 {
@@ -41,15 +42,22 @@ namespace Pekeman
 
         public void LoadMapSprite(string file)
         {
+            if (file == "")
+            {
+                return;
+            }
+
             var img = Image.FromFile(file);
             var width = img.Width / TileSize;
             var heigth = img.Height / TileSize;
 
+            //Fill image
             _fillImage = new Bitmap(TileSize * 2, TileSize * 2);
             var graphics = Graphics.FromImage(_fillImage);
             graphics.DrawImage(img, new Rectangle(0, 0, TileSize * 2, TileSize * 2), new Rectangle(img.Width - TileSize * 2, img.Height - TileSize * 2, TileSize * 2, TileSize * 2), GraphicsUnit.Pixel);
             graphics.Dispose();
 
+            //Tileset
             for (var i = 0; i < width; i++)
             {
                 for (var j = 0; j < heigth; j++)
@@ -65,45 +73,84 @@ namespace Pekeman
 
         private void Map_Paint(object sender, PaintEventArgs e)
         {
-            if (_mapData.Size == null)
+            try
             {
-                LoadMap("D:\\workspace\\Pekeman\\mapTemplate.json");
+                if (_mapData.Size == null)
+                    {
+                        LoadMap("mapTemplate.json");
+                    }
+
+                    Graphics g = e.Graphics;
+                    _centerPoint = new Point(Width / 2, Height / 2);
+
+                    double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player._x);
+                    double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player._y);
+
+                    DrawOutMap(centeredYCorner, centeredXCorner, g);
+                    DrawBackground(centeredYCorner, centeredXCorner, g);
+                    DrawPlayer(g);
+                    DrawForeground(centeredYCorner, centeredXCorner, g);
+                    DrawDebug(g);
+                }
+            catch (Exception)
+            {
+                // ignored
             }
-
-
-            Graphics g = e.Graphics;
-            _centerPoint = new Point(Width / 2, Height / 2);
-
-            double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player._x);
-            double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player._y);
-
-            DrawOutMap(centeredYCorner, centeredXCorner, g);
-            DrawBackground(centeredYCorner, centeredXCorner, g);
-            DrawPlayer(g);
-            DrawForeground(centeredYCorner, centeredXCorner, g);
-            DrawDebug(g);
         }
 
         private void DrawDebug(Graphics g)
         {
             if (Debug.DebugMode)
             {
+                int posX = (int) Math.Floor(player._x / 32);
+                int posY = (int) Math.Floor(player._y / 32);
+
+                int index = posX * _mapData.Size.Width + posY;
+
                 Brush myBrush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
-                g.FillRectangle(myBrush, 0, 0, Width / 6, Height / 4);
+                g.FillRectangle(myBrush, 0, 0, 180, 192);
 
                 Font myFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
                 g.DrawString("Debug mode", myFont, Brushes.White, 0, 0);
                 g.DrawString("x: ", myFont, Brushes.White, 0, 18);
                 g.DrawString("y: ", myFont, Brushes.White, 0, 36);
+                g.DrawString("Angle: ", myFont, Brushes.White, 0, 54);
+                g.DrawString("Arrière plan: ", myFont, Brushes.White, 0, 72);
+                g.DrawString("Premier plan: ", myFont, Brushes.White, 0, 90);
                 g.DrawString((player._x / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
                 g.DrawString((player._y / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
-
+                g.DrawString((player.Angle * 180 / Math.PI).ToString("#0"), myFont, Brushes.White, 54, 54);
+                g.DrawString(_mapData.Layers.Background[index].ToString(), myFont, Brushes.White, 100, 72);
+                g.DrawString(_mapData.Layers.Foreground[index].ToString(), myFont, Brushes.White, 108, 90);
             }
         }
 
         private void DrawPlayer(Graphics g)
         {
-            g.FillEllipse(Brushes.Red, _centerPoint.X - 10, _centerPoint.Y - 10, 10, 10);
+            int posX = _centerPoint.X - 16;
+            int posY = _centerPoint.Y - 16;
+            int sourceX = player.MovementAnimation * 32;
+            int sourceY = 0;
+
+
+            switch ((int) player.Angle)
+            {
+                case 0:
+                    sourceY = 32;
+                    break;
+                case (int) Math.PI / 2:
+                    sourceY = 96;
+                    break;
+                case (int) Math.PI:
+                    sourceY = 64;
+                    break;
+                case (int) (Math.PI + Math.PI / 2):
+                    sourceY = 0;
+                    break;
+            }
+
+            g.DrawImage(Resources.player, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
+                , 32, 32), GraphicsUnit.Pixel);
         }
 
         private void DrawOutMap(double centeredYCorner, double centeredXCorner, Graphics g)
@@ -178,10 +225,10 @@ namespace Pekeman
         public class MapSize
         {
             [JsonProperty("width")]
-            public int Width { get; private set; }
+            public int Width { get; set; }
 
             [JsonProperty("height")]
-            public int Height { get; private set; }
+            public int Height { get; set; }
         }
 
         [JsonObject(MemberSerialization.OptIn)]
@@ -225,10 +272,10 @@ namespace Pekeman
         public class MapPos
         {
             [JsonProperty("x")]
-            public int X { get; private set; }
+            public int X { get; set; }
 
             [JsonProperty("y")]
-            public int Y { get; private set; }
+            public int Y { get; set; }
         }
 
         public enum EventTypeEnum

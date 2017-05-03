@@ -15,6 +15,8 @@ namespace Pekeman
             set;
         }
 
+        public int MovementAnimation { get; set; } = 0;
+
         public double Angle { get; set; }
 
         public double Speed { get; set; } = 1;

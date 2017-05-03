@@ -142,6 +142,18 @@
   <data name="chikorita_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chikorita_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="fleche_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche_b.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche_d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche_g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche_h.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="jigglypuff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jigglypuff.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,6 +183,9 @@
   </data>
   <data name="pikachu_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pikachu_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\player.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rattata" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rattata.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

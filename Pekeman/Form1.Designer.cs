@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timerRender = new System.Windows.Forms.Timer(this.components);
+            this.DeplacementJoueur = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
-            this.map1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerRender
@@ -39,6 +39,12 @@
             this.timerRender.Enabled = true;
             this.timerRender.Interval = 30;
             this.timerRender.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // DeplacementJoueur
+            // 
+            this.DeplacementJoueur.Enabled = true;
+            this.DeplacementJoueur.Interval = 200;
+            this.DeplacementJoueur.Tick += new System.EventHandler(this.DeplacementJoueur_Tick);
             // 
             // map1
             // 
@@ -65,7 +71,6 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            this.map1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -73,6 +78,7 @@
         #endregion
         private Map map1;
         private System.Windows.Forms.Timer timerRender;
+        private System.Windows.Forms.Timer DeplacementJoueur;
     }
 }
 

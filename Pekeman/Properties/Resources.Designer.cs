@@ -143,6 +143,46 @@ namespace Pekeman.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fleche_b {
+            get {
+                object obj = ResourceManager.GetObject("fleche_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_d {
+            get {
+                object obj = ResourceManager.GetObject("fleche_d", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_g {
+            get {
+                object obj = ResourceManager.GetObject("fleche_g", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fleche_h {
+            get {
+                object obj = ResourceManager.GetObject("fleche_h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jigglypuff {
             get {
                 object obj = ResourceManager.GetObject("jigglypuff", resourceCulture);
@@ -192,8 +232,7 @@ namespace Pekeman.Properties {
         ///			5,5,5,5,5,74,5,5,5,5
         ///		],
         ///		&quot;collision&quot;: [
-        ///			false,false,true,false,false,false,false,false,false,false,
-        ///			false,fals [le reste de la chaîne a été tronqué]&quot;;.
+        ///			false,false,true,false,false,false,false,false,false [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string mapTemplate {
             get {
@@ -257,6 +296,16 @@ namespace Pekeman.Properties {
         internal static System.Drawing.Bitmap pikachu_back {
             get {
                 object obj = ResourceManager.GetObject("pikachu_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player {
+            get {
+                object obj = ResourceManager.GetObject("player", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
