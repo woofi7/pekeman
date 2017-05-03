@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -36,8 +34,8 @@ namespace Pekeman
                 _mapData = serializer.Deserialize<MapData>(reader);
             }
             LoadMapSprite(_mapData.TileSet);
-            player._x = _mapData.Spawn.X * 32 + 10;
-            player._y = _mapData.Spawn.Y * 32 + 10;
+            player.ScreenX = _mapData.Spawn.X * 32 + 10;
+            player.ScreenY = _mapData.Spawn.Y * 32 + 10;
         }
 
         public void LoadMapSprite(string file)
@@ -83,8 +81,8 @@ namespace Pekeman
                     Graphics g = e.Graphics;
                     _centerPoint = new Point(Width / 2, Height / 2);
 
-                    double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player._x);
-                    double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player._y);
+                    double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
+                    double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
 
                     DrawOutMap(centeredYCorner, centeredXCorner, g);
                     DrawBackground(centeredYCorner, centeredXCorner, g);
@@ -102,8 +100,8 @@ namespace Pekeman
         {
             if (Debug.DebugMode)
             {
-                int posX = (int) Math.Floor(player._x / 32);
-                int posY = (int) Math.Floor(player._y / 32);
+                int posX = (int) Math.Floor(player.ScreenX / 32);
+                int posY = (int) Math.Floor(player.ScreenY / 32);
 
                 int index = posX * _mapData.Size.Width + posY;
 
@@ -117,8 +115,8 @@ namespace Pekeman
                 g.DrawString("Angle: ", myFont, Brushes.White, 0, 54);
                 g.DrawString("Arrière plan: ", myFont, Brushes.White, 0, 72);
                 g.DrawString("Premier plan: ", myFont, Brushes.White, 0, 90);
-                g.DrawString((player._x / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
-                g.DrawString((player._y / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
+                g.DrawString((player.ScreenX / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
+                g.DrawString((player.ScreenY / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
                 g.DrawString((player.Angle * 180 / Math.PI).ToString("#0"), myFont, Brushes.White, 54, 54);
                 g.DrawString(_mapData.Layers.Background[index].ToString(), myFont, Brushes.White, 100, 72);
                 g.DrawString(_mapData.Layers.Foreground[index].ToString(), myFont, Brushes.White, 108, 90);
@@ -286,36 +284,35 @@ namespace Pekeman
 
         public void MovePlayer(float distance)
         {
-            if (distance != 0)
+            if (distance == 0) return;
+
+            double oldX = player.ScreenX;
+            double oldY = player.ScreenY;
+            player.MovePlayer(distance);
+
+            int posX = (int) Math.Floor(player.ScreenX / 32);
+            int posY = (int) Math.Floor(player.ScreenY / 32);
+
+
+            if (posX < 0 || posX > _mapData.Size.Width - 1)
             {
-                double oldX = player._x;
-                double oldY = player._y;
-                player.MovePlayer(distance);
-
-                int posX = (int) Math.Floor(player._x / 32);
-                int posY = (int) Math.Floor(player._y / 32);
-
-
-                if (posX < 0 || posX > _mapData.Size.Width - 1)
-                {
-                    player._x = oldX;
-                    posX = (int) Math.Floor(player._x / 32);
-                }
-                else if (posY < 0 || posY > _mapData.Size.Height - 1)
-                {
-                    player._y = oldY;
-                    posY = (int) Math.Floor(player._y / 32);
-                }
-
-                int collisionIndex = posX * _mapData.Size.Width + posY;
-                if (!_mapData.Layers.Collision[collisionIndex])
-                {
-                    player._x = oldX;
-                    player._y = oldY;
-                }
-
-                Refresh();
+                player.ScreenX = oldX;
+                posX = (int) Math.Floor(player.ScreenX / 32);
             }
+            else if (posY < 0 || posY > _mapData.Size.Height - 1)
+            {
+                player.ScreenY = oldY;
+                posY = (int) Math.Floor(player.ScreenY / 32);
+            }
+
+            int collisionIndex = posX * _mapData.Size.Width + posY;
+            if (!_mapData.Layers.Collision[collisionIndex])
+            {
+                player.ScreenX = oldX;
+                player.ScreenY = oldY;
+            }
+
+            Refresh();
         }
     }
 }

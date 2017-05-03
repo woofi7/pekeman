@@ -4,16 +4,21 @@ namespace Pekeman
 {
     public class Player
     {
-        public double _x
+        public double X
         {
-            get;
-            set;
+            get { return ScreenX / 32; }
+            set { X = value; ScreenX = value * 32;}
         }
 
-        public double _y {
-            get;
-            set;
+        public double Y
+        {
+            get { return ScreenY / 32; }
+            set { Y = value; ScreenY = value * 32;}
         }
+
+        public double ScreenX { get; set; }
+
+        public double ScreenY { get; set; }
 
         public int MovementAnimation { get; set; } = 0;
 
@@ -21,18 +26,30 @@ namespace Pekeman
 
         public double Speed { get; set; } = 1;
 
+        public double BaseSpeed { get; set; } = 128; //Pixel/second
+
+        public double HitboxSize = 32;
+
+        public Rotation Facing = new Rotation();
+
         public void SetInitialPos(double x, double y)
         {
-            _x = x;
-            _y = y;
+            ScreenX = x;
+            ScreenY = y;
         }
-
 
         public void MovePlayer(float distance)
         {
-            _x += distance * Speed * Math.Cos(Angle);
-            _y -= distance * Speed * Math.Sin(Angle);
+            ScreenX += distance * Speed * Math.Cos(Angle);
+            ScreenY -= distance * Speed * Math.Sin(Angle);
         }
 
+        public class Rotation
+        {
+            public bool Up = false;
+            public bool Down = false;
+            public bool Right = false;
+            public bool Left = false;
+        }
     }
 }
