@@ -32,7 +32,7 @@
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.DeplacementJoueur = new System.Windows.Forms.Timer(this.components);
             this.map1 = new Pekeman.Map();
-            this.ControlPanel = new Pekeman.ControlPanel(this);
+            this.ControlPanel = new Pekeman.ControlPanel();
             this.Chat = new Pekeman.Chat();
             this.map1.SuspendLayout();
             this.SuspendLayout();

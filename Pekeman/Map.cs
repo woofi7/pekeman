@@ -75,7 +75,7 @@ namespace Pekeman
             {
                 if (_mapData.Size == null)
                     {
-                        LoadMap("mapTemplate.json");
+                        LoadMap("../../../mapTemplate.json");
                     }
 
                     Graphics g = e.Graphics;

@@ -24,6 +24,7 @@ namespace Pekeman
         {
             InitializeComponent();
             map1.player = _player;
+            ControlPanel.InitializeControlPanel(this);
         }
 
         

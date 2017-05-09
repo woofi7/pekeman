@@ -13,6 +13,17 @@ namespace Pekeman
     public partial class ControlPanel : CustomGUI
     {
         private FrmPekeman FrmPeke;
+
+        public ControlPanel()
+        {
+            InitializeComponent();
+        }
+
+        public void InitializeControlPanel(FrmPekeman frmPekeman)
+        {
+            FrmPeke = frmPekeman;
+        }
+
         public ControlPanel(FrmPekeman frmPekeman)
         {
             InitializeComponent();
