@@ -17,6 +17,7 @@ namespace Pekeman
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
+        private Random _random = new Random();
 
         public Map()
         {
@@ -293,7 +294,7 @@ namespace Pekeman
             int posX = (int) Math.Floor(player.ScreenX / 32);
             int posY = (int) Math.Floor(player.ScreenY / 32);
 
-
+            //Out of map
             if (posX < 0 || posX > _mapData.Size.Width - 1)
             {
                 player.ScreenX = oldX;
@@ -305,6 +306,7 @@ namespace Pekeman
                 posY = (int) Math.Floor(player.ScreenY / 32);
             }
 
+            //Collision
             int collisionIndex = posX * _mapData.Size.Width + posY;
             if (!_mapData.Layers.Collision[collisionIndex])
             {
@@ -312,7 +314,50 @@ namespace Pekeman
                 player.ScreenY = oldY;
             }
 
+            CheckEvent(player.ScreenX, player.ScreenY, oldX, oldY);
+
             Refresh();
+        }
+
+        private void CheckEvent(double curX, double curY, double prevX, double prevY)
+        {
+            double currentX = Math.Floor(curX / 32);
+            double currentY = Math.Floor(curY / 32);
+            double previousX = Math.Floor(prevX / 32);
+            double previousY = Math.Floor(prevY / 32);
+
+            if (currentX == previousX && currentY == previousY)
+            {
+                return;
+            }
+
+            foreach (MapEvent mapEvent in _mapData.Events)
+            {
+                int startX = mapEvent.Area.From.X;
+                int startY = mapEvent.Area.From.Y;
+                int endX = mapEvent.Area.To.X;
+                int endY = mapEvent.Area.To.Y;
+
+                if (currentX < startX || currentX > endX || currentY < startY || currentY > endY) continue;
+                int multiplicator = (int) (100 / (mapEvent.Chances * 100));
+                float next = _random.Next(0, multiplicator);
+                System.Diagnostics.Debug.WriteLine(next);
+                if (next != 0) continue;
+
+                switch (mapEvent.EventType)
+                {
+                    case EventTypeEnum.EnterPokedex:
+                        //TODO: Open pokedex
+                        System.Diagnostics.Debug.WriteLine("Pokedex: " + next);
+                        break;
+                    case EventTypeEnum.MeetPokemon:
+                        System.Diagnostics.Debug.WriteLine("Battle: " + next);
+                        //TODO: Start battle
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
     }
 }
