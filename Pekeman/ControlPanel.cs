@@ -32,42 +32,42 @@ namespace Pekeman
 
         private void PctFlecheHaut_MouseDown(object sender, MouseEventArgs e)
         {
-            FrmPeke._up = true;
+            FrmPeke.UpMovement = true;
         }
 
         private void PctFlecheHaut_MouseUp(object sender, MouseEventArgs e)
         {
-            FrmPeke._up = false;
+            FrmPeke.UpMovement = false;
         }
 
         private void PctFlecheBas_MouseDown(object sender, MouseEventArgs e)
         {
-            FrmPeke._down = true;
+            FrmPeke.DownMovement = true;
         }
 
         private void PctFlecheBas_MouseUp(object sender, MouseEventArgs e)
         {
-            FrmPeke._down = false;
+            FrmPeke.DownMovement = false;
         }
 
         private void PctFlecheDroite_MouseDown(object sender, MouseEventArgs e)
         {
-            FrmPeke._right = true;
+            FrmPeke.RightMovement = true;
         }
 
         private void PctFlecheDroite_MouseUp(object sender, MouseEventArgs e)
         {
-            FrmPeke._right = false;
+            FrmPeke.RightMovement = false;
         }
 
         private void PctFlecheGauche_MouseDown(object sender, MouseEventArgs e)
         {
-            FrmPeke._left = true;
+            FrmPeke.LeftMovement = true;
         }
 
         private void PctFlecheGauche_MouseUp(object sender, MouseEventArgs e)
         {
-            FrmPeke._left = false;
+            FrmPeke.LeftMovement = false;
         }
     }
 }

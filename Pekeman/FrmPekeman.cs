@@ -13,16 +13,19 @@ namespace Pekeman
 {
     public partial class FrmPekeman : Form
     {
-        private Player _player = new Player();
+        private readonly Player _player;
 
-        public bool _right;
-        public bool _left;
-        public bool _up;
-        public bool _down;
+        public bool RightMovement;
+        public bool LeftMovement;
+        public bool UpMovement;
+        public bool DownMovement;
+        public bool OptionsMenu;
 
         public FrmPekeman()
         {
             InitializeComponent();
+
+            _player = new Player("default");
             map1.player = _player;
             ControlPanel.InitializeControlPanel(this);
         }
@@ -35,19 +38,19 @@ namespace Pekeman
             {
                 case Keys.A:
                 case Keys.Left:
-                    _left = true;
+                    LeftMovement = true;
                     break;
                 case Keys.D:
                 case Keys.Right:
-                    _right = true;
+                    RightMovement = true;
                     break;
                 case Keys.W:
                 case Keys.Up:
-                    _up = true;
+                    UpMovement = true;
                     break;
                 case Keys.S:
                 case Keys.Down:
-                    _down = true;
+                    DownMovement = true;
                     break;
             }
         }
@@ -58,19 +61,19 @@ namespace Pekeman
             {
                 case Keys.A:
                 case Keys.Left:
-                    _left = false;
+                    LeftMovement = false;
                     break;
                 case Keys.D:
                 case Keys.Right:
-                    _right = false;
+                    RightMovement = false;
                     break;
                 case Keys.W:
                 case Keys.Up:
-                    _up = false;
+                    UpMovement = false;
                     break;
                 case Keys.S:
                 case Keys.Down:
-                    _down = false;
+                    DownMovement = false;
                     break;
                 case Keys.F3:
                     Debug.DebugMode = !Debug.DebugMode;
@@ -90,23 +93,23 @@ namespace Pekeman
             float ellapsedSeconds = ellapsed / 1000f;
             float distance = 0;
 
-            if (_right)
+            if (RightMovement)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = 0;
             }
-            else if (_left)
+            else if (LeftMovement)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = Math.PI;
             }
 
-            else if (_up)
+            else if (UpMovement)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = Math.PI / 2;
             }
-            else if (_down)
+            else if (DownMovement)
             {
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = 3 * Math.PI / 2;
@@ -122,6 +125,16 @@ namespace Pekeman
             {
                 _player.MovementAnimation = 0;
             }
+        }
+
+        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

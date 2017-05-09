@@ -172,8 +172,19 @@ namespace Pekeman
                     break;
             }
 
+            Font font = new Font("Arial", 10, FontStyle.Bold);
+
+            SizeF size = g.MeasureString(player.Name, font);
+
+            System.Diagnostics.Debug.WriteLine(size.Width + " " + size.Height);
+
+
             g.DrawImage(Resources.player, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
                 , 32, 32), GraphicsUnit.Pixel);
+
+            SolidBrush brush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
+            g.FillRectangle(brush, posX - (size.Width - 32) / 2, posY - 20, size.Width, size.Height);
+            g.DrawString(player.Name, font, Brushes.WhiteSmoke, posX - (size.Width - 32) / 2 + 1, posY - 20);
         }
 
         private void DrawOutMap(double centeredYCorner, double centeredXCorner, Graphics g)

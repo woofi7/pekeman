@@ -37,6 +37,9 @@ namespace Pekeman
         [JsonProperty("speed")]
         public int Speed { get; set; }
 
+        [JsonProperty("generation")]
+        public int[] Generation { get; set; }
+
         public int Level = 1;
         public int CurrentHp;
         private Random _random = new Random();
