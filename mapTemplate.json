@@ -49,8 +49,8 @@
 	},
 	"events": [
 		{
-			"eventType": "EnterPokedex",
-			"chances": 1.0,
+			"eventType": "MeetPokemon",
+			"chances": 0.5,
 			"area": {
 				"from": {
 					"x": 9,
@@ -63,8 +63,8 @@
 			}
 		},
 		{
-			"eventType": "MeetPokemon",
-			"chances": 0.1,
+			"eventType": "EnterPokedex",
+			"chances": 1.0,
 			"area": {
 				"from": {
 					"x": 80,

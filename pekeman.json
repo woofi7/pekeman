@@ -1,0 +1,26 @@
+[
+	{
+		"id": 152,
+		"name": "Chikorita",
+		"elementType": ["Grass"],
+		"description": "khsdf jksdhafbsad kjhdsfbsadm j sdfjh jdsfhb sdjjfbd.",
+		"gender": "F",
+		"catchRate": 45,
+		"hp": 45,
+		"attack": 49,
+		"defence": 65,
+		"speed": 45
+	},
+	{
+		"id": 25,
+		"name": "Pikachu",
+		"elementType": ["Electric"],
+		"description": "khsdf gsdjksdha gfd gfdsfbsagdfd kjhd gsfgb gf sadm j sdfjh  jds fhb sg gfddjjfbd.",
+		"gender": "M",
+		"catchRate": 190,
+		"hp": 35,
+		"attack": 55,
+		"defence": 40,
+		"speed": 90
+	}
+]

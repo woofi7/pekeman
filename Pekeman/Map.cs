@@ -12,17 +12,41 @@ namespace Pekeman
     {
         public Player player;
 
+        public BattleManager Battle = new BattleManager();
+        public EventManager EventZones;
+        public Pokemon[] PokemonList;
+
         private MapData _mapData = new MapData();
         private Image[] sprite = new Image[2048];
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
-        private Random _random = new Random();
 
         public Map()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            EventZones = new EventManager(Battle);
+            LoadPokemon();
+        }
+
+        public void LoadPokemon()
+        {
+            try
+            {
+                JsonSerializer serializer = new JsonSerializer();
+
+                using (StreamReader sw = new StreamReader("../../../pekeman.json"))
+                using (JsonReader reader = new JsonTextReader(sw))
+                {
+                    PokemonList = serializer.Deserialize<Pokemon[]>(reader);
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         public void LoadMap(String file)
@@ -198,6 +222,42 @@ namespace Pekeman
             }
         }
 
+        public void MovePlayer(float distance)
+        {
+            if (distance == 0) return;
+
+            double oldX = player.ScreenX;
+            double oldY = player.ScreenY;
+            player.MovePlayer(distance);
+
+            int posX = (int) Math.Floor(player.ScreenX / 32);
+            int posY = (int) Math.Floor(player.ScreenY / 32);
+
+            //Out of map
+            if (posX < 0 || posX > _mapData.Size.Width - 1)
+            {
+                player.ScreenX = oldX;
+                posX = (int) Math.Floor(player.ScreenX / 32);
+            }
+            else if (posY < 0 || posY > _mapData.Size.Height - 1)
+            {
+                player.ScreenY = oldY;
+                posY = (int) Math.Floor(player.ScreenY / 32);
+            }
+
+            //Collision
+            int collisionIndex = posX * _mapData.Size.Width + posY;
+            if (!_mapData.Layers.Collision[collisionIndex])
+            {
+                player.ScreenX = oldX;
+                player.ScreenY = oldY;
+            }
+
+
+            EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY);
+            Refresh();
+        }
+
         [JsonObject(MemberSerialization.OptIn)]
         public class MapData
         {
@@ -275,89 +335,6 @@ namespace Pekeman
 
             [JsonProperty("y")]
             public int Y { get; set; }
-        }
-
-        public enum EventTypeEnum
-        {
-            EnterPokedex,
-            MeetPokemon
-        }
-
-        public void MovePlayer(float distance)
-        {
-            if (distance == 0) return;
-
-            double oldX = player.ScreenX;
-            double oldY = player.ScreenY;
-            player.MovePlayer(distance);
-
-            int posX = (int) Math.Floor(player.ScreenX / 32);
-            int posY = (int) Math.Floor(player.ScreenY / 32);
-
-            //Out of map
-            if (posX < 0 || posX > _mapData.Size.Width - 1)
-            {
-                player.ScreenX = oldX;
-                posX = (int) Math.Floor(player.ScreenX / 32);
-            }
-            else if (posY < 0 || posY > _mapData.Size.Height - 1)
-            {
-                player.ScreenY = oldY;
-                posY = (int) Math.Floor(player.ScreenY / 32);
-            }
-
-            //Collision
-            int collisionIndex = posX * _mapData.Size.Width + posY;
-            if (!_mapData.Layers.Collision[collisionIndex])
-            {
-                player.ScreenX = oldX;
-                player.ScreenY = oldY;
-            }
-
-            CheckEvent(player.ScreenX, player.ScreenY, oldX, oldY);
-
-            Refresh();
-        }
-
-        private void CheckEvent(double curX, double curY, double prevX, double prevY)
-        {
-            double currentX = Math.Floor(curX / 32);
-            double currentY = Math.Floor(curY / 32);
-            double previousX = Math.Floor(prevX / 32);
-            double previousY = Math.Floor(prevY / 32);
-
-            if (currentX == previousX && currentY == previousY)
-            {
-                return;
-            }
-
-            foreach (MapEvent mapEvent in _mapData.Events)
-            {
-                int startX = mapEvent.Area.From.X;
-                int startY = mapEvent.Area.From.Y;
-                int endX = mapEvent.Area.To.X;
-                int endY = mapEvent.Area.To.Y;
-
-                if (currentX < startX || currentX > endX || currentY < startY || currentY > endY) continue;
-                int multiplicator = (int) (100 / (mapEvent.Chances * 100));
-                float next = _random.Next(0, multiplicator);
-                System.Diagnostics.Debug.WriteLine(next);
-                if (next != 0) continue;
-
-                switch (mapEvent.EventType)
-                {
-                    case EventTypeEnum.EnterPokedex:
-                        //TODO: Open pokedex
-                        System.Diagnostics.Debug.WriteLine("Pokedex: " + next);
-                        break;
-                    case EventTypeEnum.MeetPokemon:
-                        System.Diagnostics.Debug.WriteLine("Battle: " + next);
-                        //TODO: Start battle
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
         }
     }
 }

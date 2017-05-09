@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BattleManager.Designer.cs">
+      <DependentUpon>BattleManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="CasePekedex.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,7 @@
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Debug.cs" />
+    <Compile Include="EventManager.cs" />
     <Compile Include="FrmPekeman.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +99,7 @@
     <Compile Include="Pekedex.Designer.cs">
       <DependentUpon>Pekedex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pokemon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

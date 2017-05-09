@@ -64,6 +64,7 @@
             // 
             // ControlPanel
             // 
+            this.ControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ControlPanel.BackColor = System.Drawing.Color.Transparent;
             this.ControlPanel.Location = new System.Drawing.Point(808, 529);
             this.ControlPanel.Name = "ControlPanel";

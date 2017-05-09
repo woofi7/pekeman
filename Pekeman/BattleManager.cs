@@ -19,7 +19,7 @@ namespace Pekeman
 
         public void StartBattle()
         {
-            
+            System.Diagnostics.Debug.WriteLine("Start battle");
         }
     }
 }
