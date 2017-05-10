@@ -9,7 +9,9 @@
 		"hp": 45,
 		"attack": 49,
 		"defence": 65,
-		"speed": 45
+		"speed": 45,
+		"imgFront": "chikorita.gif",
+		"imgBack": "chikorita_back.gif"
 	},
 	{
 		"id": 25,
@@ -21,6 +23,8 @@
 		"hp": 35,
 		"attack": 55,
 		"defence": 40,
-		"speed": 90
+		"speed": 90,
+		"imgFront": "pikachu.gif",
+		"imgBack": "pikachu_back.gif"
 	}
 ]

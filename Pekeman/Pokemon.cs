@@ -40,6 +40,12 @@ namespace Pekeman
         [JsonProperty("generation")]
         public int[] Generation { get; set; }
 
+        [JsonProperty("imgFront")]
+        public string ImgFront { get; set; }
+
+        [JsonProperty("imgBack")]
+        public string ImgBack { get; set; }
+
         public int Level = 1;
         public int CurrentHp;
         private Random _random = new Random();
