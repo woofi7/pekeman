@@ -13,7 +13,7 @@ namespace Pekeman
 {
     public partial class FrmPekeman : Form
     {
-        private readonly Player _player;
+        private readonly Player _player = new Player();
 
         public bool RightMovement;
         public bool LeftMovement;
@@ -24,8 +24,7 @@ namespace Pekeman
         public FrmPekeman()
         {
             InitializeComponent();
-
-            _player = new Player("default");
+            
             MapPeke.player = _player;
             ControlPanel.InitializeControlPanel(this);
         }

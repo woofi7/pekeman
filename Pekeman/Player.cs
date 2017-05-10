@@ -7,12 +7,12 @@ namespace Pekeman
     {
         public double X
         {
-            get => ScreenX / 32;
+            get { return ScreenX / 32; }
             set { X = value; ScreenX = value * 32;}
         }
         public double Y
         {
-            get => ScreenY / 32;
+            get { return ScreenY / 32; }
             set { Y = value; ScreenY = value * 32;}
         }
         public double ScreenX { get; set; }
@@ -30,6 +30,10 @@ namespace Pekeman
         public Player(string name)
         {
             Name = name;
+        }
+
+        public Player() : this("Denis")
+        {
         }
 
         public void SetInitialPos(double x, double y)

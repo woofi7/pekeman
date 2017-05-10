@@ -177,9 +177,6 @@ namespace Pekeman
 
             SizeF size = g.MeasureString(player.Name, font);
 
-            System.Diagnostics.Debug.WriteLine(size.Width + " " + size.Height);
-
-
             g.DrawImage(Resources.player, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
                 , 32, 32), GraphicsUnit.Pixel);
 
@@ -242,29 +239,37 @@ namespace Pekeman
             double oldY = player.ScreenY;
             player.MovePlayer(distance);
 
-            int posX = (int) Math.Floor(player.ScreenX / 32);
-            int posY = (int) Math.Floor(player.ScreenY / 32);
+            int posXMin = (int) Math.Floor((player.ScreenX - 8) / 32);
+            int posXMax = (int) Math.Floor((player.ScreenX + 16) / 32);
+            int posYMin = (int) Math.Floor((player.ScreenY - 8) / 32);
+            int posYMax = (int) Math.Floor((player.ScreenY + 16) / 32);
 
             //Out of map
-            if (posX < 0 || posX > _mapData.Size.Width - 1)
+            if (posXMin < 0 || posXMax > _mapData.Size.Width - 1)
             {
                 player.ScreenX = oldX;
-                posX = (int) Math.Floor(player.ScreenX / 32);
             }
-            else if (posY < 0 || posY > _mapData.Size.Height - 1)
+            else if (posYMin < 0 || posYMax > _mapData.Size.Height - 1)
             {
                 player.ScreenY = oldY;
-                posY = (int) Math.Floor(player.ScreenY / 32);
             }
 
             //Collision
-            int collisionIndex = posX * _mapData.Size.Width + posY;
-            if (!_mapData.Layers.Collision[collisionIndex])
+            int collisionIndex = posXMin * _mapData.Size.Width + (int) Math.Floor(player.ScreenY / 32);
+            if (collisionIndex >= 0 && !_mapData.Layers.Collision[collisionIndex])
             {
                 player.ScreenX = oldX;
                 player.ScreenY = oldY;
             }
 
+            collisionIndex = posXMax * _mapData.Size.Width + (int) Math.Floor(player.ScreenY / 32);
+            System.Diagnostics.Debug.WriteLine(collisionIndex);
+            if (collisionIndex < _mapData.Size.Width * _mapData.Size.Width && !_mapData.Layers.Collision[collisionIndex])
+            {
+                System.Diagnostics.Debug.WriteLine(collisionIndex);
+                player.ScreenX = oldX;
+                player.ScreenY = oldY;
+            }
 
             EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY);
             Refresh();
