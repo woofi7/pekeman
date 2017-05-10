@@ -26,10 +26,12 @@ namespace Pekeman
         {
             InitializeComponent();
             DoubleBuffered = true;
-            Battle = new BattleManager(this);
-
-            EventZones = new EventManager(Battle);
             LoadPokemon();
+            Battle = new BattleManager(this);
+            Battle.Visible = false;
+            Controls.Add(Battle);
+            EventZones = new EventManager(Battle);
+            
         }
 
         public void LoadPokemon()
