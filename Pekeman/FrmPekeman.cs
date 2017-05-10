@@ -118,12 +118,17 @@ namespace Pekeman
 
         private void DeplacementJoueur_Tick(object sender, EventArgs e)
         {
-            _player.MovementAnimation++;
-
-            if (_player.MovementAnimation == 3)
+            if (RightMovement || LeftMovement || UpMovement || DownMovement)
             {
-                _player.MovementAnimation = 0;
+                _player.MovementAnimation++;
+
+                if (_player.MovementAnimation == 3)
+                {
+                    _player.MovementAnimation = 0;
+                }
             }
+
+            Refresh();
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,6 +139,16 @@ namespace Pekeman
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DeplacementNpc_Tick(object sender, EventArgs e)
+        {
+            Npc.MovementAnimation++;
+
+            if (Npc.MovementAnimation == 3)
+            {
+                Npc.MovementAnimation = 0;
+            }
         }
     }
 }

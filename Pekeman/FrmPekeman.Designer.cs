@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timerRender = new System.Windows.Forms.Timer(this.components);
-            this.Deplacement = new System.Windows.Forms.Timer(this.components);
+            this.DeplacementJoueur = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.MapPeke = new Pekeman.Map();
             this.ControlPanel = new Pekeman.ControlPanel();
             this.Chat = new Pekeman.Chat();
+            this.DeplacementNpc = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.MapPeke.SuspendLayout();
             this.SuspendLayout();
@@ -51,11 +52,11 @@
             this.timerRender.Interval = 30;
             this.timerRender.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Deplacement
+            // DeplacementJoueur
             // 
-            this.Deplacement.Enabled = true;
-            this.Deplacement.Interval = 200;
-            this.Deplacement.Tick += new System.EventHandler(this.DeplacementJoueur_Tick);
+            this.DeplacementJoueur.Enabled = true;
+            this.DeplacementJoueur.Interval = 200;
+            this.DeplacementJoueur.Tick += new System.EventHandler(this.DeplacementJoueur_Tick);
             // 
             // menuStrip1
             // 
@@ -142,6 +143,12 @@
             this.Chat.Size = new System.Drawing.Size(400, 140);
             this.Chat.TabIndex = 0;
             // 
+            // DeplacementNpc
+            // 
+            this.DeplacementNpc.Enabled = true;
+            this.DeplacementNpc.Interval = 200;
+            this.DeplacementNpc.Tick += new System.EventHandler(this.DeplacementNpc_Tick);
+            // 
             // FrmPekeman
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,7 +177,7 @@
         private System.Windows.Forms.Timer timerRender;
         private ControlPanel ControlPanel;
         private Chat Chat;
-        private System.Windows.Forms.Timer Deplacement;
+        private System.Windows.Forms.Timer DeplacementJoueur;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
@@ -178,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem àProposToolStripMenuItem;
+        private System.Windows.Forms.Timer DeplacementNpc;
     }
 }
 

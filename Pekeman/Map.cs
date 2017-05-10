@@ -113,6 +113,7 @@ namespace Pekeman
                     DrawOutMap(centeredYCorner, centeredXCorner, g);
                     DrawBackground(centeredYCorner, centeredXCorner, g);
                     DrawPlayer(g);
+                    DrawnNpc(g);
                     DrawForeground(centeredYCorner, centeredXCorner, g);
                     DrawDebug(g);
                 }
@@ -122,31 +123,16 @@ namespace Pekeman
             }
         }
 
-        private void DrawDebug(Graphics g)
+        private void DrawnNpc(Graphics g)
         {
-            if (Debug.DebugMode)
-            {
-                int posX = (int) Math.Floor(player.ScreenX / 32);
-                int posY = (int) Math.Floor(player.ScreenY / 32);
+            int posX = 100;
+            int posY = 100;
 
-                int index = posX * _mapData.Size.Width + posY;
+            int sourceX = Npc.MovementAnimation * 32;
+            int sourceY = 0;
 
-                Brush myBrush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
-                g.FillRectangle(myBrush, 0, 0, 180, 192);
-
-                Font myFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
-                g.DrawString("Debug mode", myFont, Brushes.White, 0, 0);
-                g.DrawString("x: ", myFont, Brushes.White, 0, 18);
-                g.DrawString("y: ", myFont, Brushes.White, 0, 36);
-                g.DrawString("Angle: ", myFont, Brushes.White, 0, 54);
-                g.DrawString("Arrière plan: ", myFont, Brushes.White, 0, 72);
-                g.DrawString("Premier plan: ", myFont, Brushes.White, 0, 90);
-                g.DrawString((player.ScreenX / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
-                g.DrawString((player.ScreenY / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
-                g.DrawString((player.Angle * 180 / Math.PI).ToString("#0"), myFont, Brushes.White, 54, 54);
-                g.DrawString(_mapData.Layers.Background[index].ToString(), myFont, Brushes.White, 100, 72);
-                g.DrawString(_mapData.Layers.Foreground[index].ToString(), myFont, Brushes.White, 108, 90);
-            }
+            g.DrawImage(Resources.npc, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
+                , 32, 32), GraphicsUnit.Pixel);
         }
 
         private void DrawPlayer(Graphics g)
@@ -183,6 +169,33 @@ namespace Pekeman
             SolidBrush brush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
             g.FillRectangle(brush, posX - (size.Width - 32) / 2, posY - 20, size.Width, size.Height);
             g.DrawString(player.Name, font, Brushes.WhiteSmoke, posX - (size.Width - 32) / 2 + 1, posY - 20);
+        }
+
+        private void DrawDebug(Graphics g)
+        {
+            if (Debug.DebugMode)
+            {
+                int posX = (int) Math.Floor(player.ScreenX / 32);
+                int posY = (int) Math.Floor(player.ScreenY / 32);
+
+                int index = posX * _mapData.Size.Width + posY;
+
+                Brush myBrush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
+                g.FillRectangle(myBrush, 0, 0, 180, 192);
+
+                Font myFont = new Font(FontFamily.GenericSansSerif, 12, FontStyle.Bold);
+                g.DrawString("Debug mode", myFont, Brushes.White, 0, 0);
+                g.DrawString("x: ", myFont, Brushes.White, 0, 18);
+                g.DrawString("y: ", myFont, Brushes.White, 0, 36);
+                g.DrawString("Angle: ", myFont, Brushes.White, 0, 54);
+                g.DrawString("Arrière plan: ", myFont, Brushes.White, 0, 72);
+                g.DrawString("Premier plan: ", myFont, Brushes.White, 0, 90);
+                g.DrawString((player.ScreenX / 32).ToString("#0.0"), myFont, Brushes.Red, 16, 18);
+                g.DrawString((player.ScreenY / 32).ToString("#0.0"), myFont, Brushes.Blue, 16, 36);
+                g.DrawString((player.Angle * 180 / Math.PI).ToString("#0"), myFont, Brushes.White, 54, 54);
+                g.DrawString(_mapData.Layers.Background[index].ToString(), myFont, Brushes.White, 100, 72);
+                g.DrawString(_mapData.Layers.Foreground[index].ToString(), myFont, Brushes.White, 108, 90);
+            }
         }
 
         private void DrawOutMap(double centeredYCorner, double centeredXCorner, Graphics g)
@@ -239,6 +252,8 @@ namespace Pekeman
             double oldY = player.ScreenY;
             player.MovePlayer(distance);
 
+            int posX = (int) Math.Floor(player.ScreenX / 32);
+            int posY = (int) Math.Floor(player.ScreenY / 32);
             int posXMin = (int) Math.Floor((player.ScreenX - 8) / 32);
             int posXMax = (int) Math.Floor((player.ScreenX + 16) / 32);
             int posYMin = (int) Math.Floor((player.ScreenY - 8) / 32);
@@ -261,14 +276,31 @@ namespace Pekeman
                 player.ScreenX = oldX;
                 player.ScreenY = oldY;
             }
-
             collisionIndex = posXMax * _mapData.Size.Width + (int) Math.Floor(player.ScreenY / 32);
-            System.Diagnostics.Debug.WriteLine(collisionIndex);
             if (collisionIndex < _mapData.Size.Width * _mapData.Size.Width && !_mapData.Layers.Collision[collisionIndex])
             {
-                System.Diagnostics.Debug.WriteLine(collisionIndex);
                 player.ScreenX = oldX;
                 player.ScreenY = oldY;
+            }
+            if (posYMax > posY)
+            {
+                collisionIndex = posX * _mapData.Size.Width + posYMax;
+                System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + _mapData.Layers.Collision[collisionIndex]);
+                if (!_mapData.Layers.Collision[collisionIndex])
+                {
+                    player.ScreenX = oldX;
+                    player.ScreenY = oldY;
+                }
+            }
+            else if (posYMin < posY)
+            {
+                collisionIndex = posX * _mapData.Size.Width + posYMin;
+                System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + _mapData.Layers.Collision[collisionIndex]);
+                if (!_mapData.Layers.Collision[collisionIndex])
+                {
+                    player.ScreenX = oldX;
+                    player.ScreenY = oldY;
+                }
             }
 
             EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY);
