@@ -12,14 +12,28 @@ namespace Pekeman
 {
     public partial class BattleManager : UserControl
     {
-        public BattleManager()
+        private Map Map;
+        private Pokemon Wild = new Pokemon();
+        private Random rng = new Random();
+        public BattleManager(Map map)
         {
             InitializeComponent();
+            Map = map;
         }
 
         public void StartBattle()
         {
             System.Diagnostics.Debug.WriteLine("Start battle");
+            DeterminerPokemon();
+            Console.WriteLine(Wild.Name);
+        }
+
+        private void DeterminerPokemon()
+        {
+            int choix = rng.Next(0, Map.PokemonList.Length);
+
+            Wild = Map.PokemonList.ElementAt(choix);
+            
         }
     }
 }

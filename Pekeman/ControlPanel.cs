@@ -69,5 +69,10 @@ namespace Pekeman
         {
             FrmPeke.LeftMovement = false;
         }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            FrmPeke.MapPeke.Battle.StartBattle();
+        }
     }
 }

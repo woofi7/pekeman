@@ -12,7 +12,7 @@ namespace Pekeman
     {
         public Player player;
 
-        public BattleManager Battle = new BattleManager();
+        public BattleManager Battle;
         public EventManager EventZones;
         public Pokemon[] PokemonList;
 
@@ -26,6 +26,7 @@ namespace Pekeman
         {
             InitializeComponent();
             DoubleBuffered = true;
+            Battle = new BattleManager(this);
 
             EventZones = new EventManager(Battle);
             LoadPokemon();

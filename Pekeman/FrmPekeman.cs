@@ -26,7 +26,7 @@ namespace Pekeman
             InitializeComponent();
 
             _player = new Player("default");
-            map1.player = _player;
+            MapPeke.player = _player;
             ControlPanel.InitializeControlPanel(this);
         }
 
@@ -77,7 +77,7 @@ namespace Pekeman
                     break;
                 case Keys.F3:
                     Debug.DebugMode = !Debug.DebugMode;
-                    map1.Refresh();
+                    MapPeke.Refresh();
                     break;
             }
         }
@@ -114,7 +114,7 @@ namespace Pekeman
                 distance = ellapsedSeconds * baseSpeed;
                 _player.Angle = 3 * Math.PI / 2;
             }
-            map1.MovePlayer(distance);
+            MapPeke.MovePlayer(distance);
         }
 
         private void DeplacementJoueur_Tick(object sender, EventArgs e)

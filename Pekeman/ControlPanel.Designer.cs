@@ -32,6 +32,7 @@
             this.PctFlecheBas = new System.Windows.Forms.PictureBox();
             this.PctFlecheDroite = new System.Windows.Forms.PictureBox();
             this.PctFlecheGauche = new System.Windows.Forms.PictureBox();
+            this.BtnStart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PctFlecheHaut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PctFlecheBas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PctFlecheDroite)).BeginInit();
@@ -86,10 +87,22 @@
             this.PctFlecheGauche.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PctFlecheGauche_MouseDown);
             this.PctFlecheGauche.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PctFlecheGauche_MouseUp);
             // 
+            // BtnStart
+            // 
+            this.BtnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnStart.Location = new System.Drawing.Point(148, 5);
+            this.BtnStart.Name = "BtnStart";
+            this.BtnStart.Size = new System.Drawing.Size(46, 20);
+            this.BtnStart.TabIndex = 4;
+            this.BtnStart.Text = "Start";
+            this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.PctFlecheGauche);
             this.Controls.Add(this.PctFlecheDroite);
             this.Controls.Add(this.PctFlecheBas);
@@ -111,5 +124,6 @@
         public System.Windows.Forms.PictureBox PctFlecheBas;
         public System.Windows.Forms.PictureBox PctFlecheDroite;
         public System.Windows.Forms.PictureBox PctFlecheGauche;
+        private System.Windows.Forms.Button BtnStart;
     }
 }

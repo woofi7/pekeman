@@ -38,11 +38,11 @@
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.àProposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.map1 = new Pekeman.Map();
+            this.MapPeke = new Pekeman.Map();
             this.ControlPanel = new Pekeman.ControlPanel();
             this.Chat = new Pekeman.Chat();
             this.menuStrip1.SuspendLayout();
-            this.map1.SuspendLayout();
+            this.MapPeke.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerRender
@@ -81,19 +81,19 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.optionsToolStripMenuItem.Text = "Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(113, 6);
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
@@ -111,18 +111,18 @@
             this.àProposToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.àProposToolStripMenuItem.Text = "À propos";
             // 
-            // map1
+            // MapPeke
             // 
-            this.map1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.MapPeke.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.map1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.map1.Controls.Add(this.ControlPanel);
-            this.map1.Controls.Add(this.Chat);
-            this.map1.Location = new System.Drawing.Point(0, 0);
-            this.map1.Name = "map1";
-            this.map1.Size = new System.Drawing.Size(1008, 729);
-            this.map1.TabIndex = 3;
+            this.MapPeke.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MapPeke.Controls.Add(this.ControlPanel);
+            this.MapPeke.Controls.Add(this.Chat);
+            this.MapPeke.Location = new System.Drawing.Point(0, 0);
+            this.MapPeke.Name = "MapPeke";
+            this.MapPeke.Size = new System.Drawing.Size(1008, 729);
+            this.MapPeke.TabIndex = 3;
             // 
             // ControlPanel
             // 
@@ -148,7 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.map1);
+            this.Controls.Add(this.MapPeke);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -159,14 +159,14 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.map1.ResumeLayout(false);
+            this.MapPeke.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private Map map1;
+        public Map MapPeke;
         private System.Windows.Forms.Timer timerRender;
         private ControlPanel ControlPanel;
         private Chat Chat;
