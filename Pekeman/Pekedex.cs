@@ -30,25 +30,26 @@ namespace Pekeman
 
         private void AddCasePekeList()
         {
-            foreach (var c in this.Controls)
-            {
-                if (c is CasePekedex)
-                {
-                    ListeCase.Add((CasePekedex)c);
-                }
-                
-            }
+            ListeCase.Add(CaseBulbusaure);
+            ListeCase.Add(CaseCharmender);
+            ListeCase.Add(CaseSquirtle);
+            ListeCase.Add(CaseCaterpie);
+            ListeCase.Add(CasePidgey);
+            ListeCase.Add(CaseRattata);
+            ListeCase.Add(CasePikachu);
+            ListeCase.Add(CaseChikorita);
         }
       private void NumeroterPekedex()
         {
             CaseBulbusaure.LblNumI.Text = _map.PokemonList[0].Id;
             CaseCharmender.LblNumI.Text = _map.PokemonList[1].Id;
             CaseSquirtle.LblNumI.Text = _map.PokemonList[2].Id;
-            CasePikachu.LblNumI.Text = _map.PokemonList[3].Id;
-            CaseChikorita.LblNumI.Text = _map.PokemonList[4].Id;
-            CasePidgey.LblNumI.Text = _map.PokemonList[5].Id;
-            CaseRatata.LblNumI.Text = _map.PokemonList[6].Id;
-            CaseMew.LblNumI.Text = _map.PokemonList[7].Id;
+            CaseCaterpie.LblNumI.Text = _map.PokemonList[3].Id;
+            CasePidgey.LblNumI.Text = _map.PokemonList[4].Id;
+            CaseRattata.LblNumI.Text = _map.PokemonList[5].Id;
+            CasePikachu.LblNumI.Text = _map.PokemonList[6].Id;
+            CaseChikorita.LblNumI.Text = _map.PokemonList[7].Id;
+            
         }
 
         public void AddPeke(Pokemon peke)

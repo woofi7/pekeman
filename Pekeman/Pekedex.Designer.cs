@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CaseMew = new Pekeman.CasePekedex();
-            this.CaseRatata = new Pekeman.CasePekedex();
-            this.CasePidgey = new Pekeman.CasePekedex();
             this.CaseChikorita = new Pekeman.CasePekedex();
             this.CasePikachu = new Pekeman.CasePekedex();
+            this.CaseRattata = new Pekeman.CasePekedex();
+            this.CasePidgey = new Pekeman.CasePekedex();
+            this.CaseCaterpie = new Pekeman.CasePekedex();
             this.CaseSquirtle = new Pekeman.CasePekedex();
             this.CaseCharmender = new Pekeman.CasePekedex();
             this.CaseBulbusaure = new Pekeman.CasePekedex();
@@ -42,11 +42,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.CaseMew);
-            this.panel1.Controls.Add(this.CaseRatata);
-            this.panel1.Controls.Add(this.CasePidgey);
             this.panel1.Controls.Add(this.CaseChikorita);
             this.panel1.Controls.Add(this.CasePikachu);
+            this.panel1.Controls.Add(this.CaseRattata);
+            this.panel1.Controls.Add(this.CasePidgey);
+            this.panel1.Controls.Add(this.CaseCaterpie);
             this.panel1.Controls.Add(this.CaseSquirtle);
             this.panel1.Controls.Add(this.CaseCharmender);
             this.panel1.Controls.Add(this.CaseBulbusaure);
@@ -55,50 +55,50 @@
             this.panel1.Size = new System.Drawing.Size(802, 582);
             this.panel1.TabIndex = 0;
             // 
-            // CaseMew
-            // 
-            this.CaseMew.BackColor = System.Drawing.Color.Transparent;
-            this.CaseMew.ForeColor = System.Drawing.Color.White;
-            this.CaseMew.Location = new System.Drawing.Point(400, 438);
-            this.CaseMew.Name = "CaseMew";
-            this.CaseMew.Size = new System.Drawing.Size(400, 140);
-            this.CaseMew.TabIndex = 7;
-            // 
-            // CaseRatata
-            // 
-            this.CaseRatata.BackColor = System.Drawing.Color.Transparent;
-            this.CaseRatata.ForeColor = System.Drawing.Color.White;
-            this.CaseRatata.Location = new System.Drawing.Point(0, 438);
-            this.CaseRatata.Name = "CaseRatata";
-            this.CaseRatata.Size = new System.Drawing.Size(400, 140);
-            this.CaseRatata.TabIndex = 6;
-            // 
-            // CasePidgey
-            // 
-            this.CasePidgey.BackColor = System.Drawing.Color.Transparent;
-            this.CasePidgey.ForeColor = System.Drawing.Color.White;
-            this.CasePidgey.Location = new System.Drawing.Point(400, 292);
-            this.CasePidgey.Name = "CasePidgey";
-            this.CasePidgey.Size = new System.Drawing.Size(400, 140);
-            this.CasePidgey.TabIndex = 5;
-            // 
             // CaseChikorita
             // 
             this.CaseChikorita.BackColor = System.Drawing.Color.Transparent;
             this.CaseChikorita.ForeColor = System.Drawing.Color.White;
-            this.CaseChikorita.Location = new System.Drawing.Point(0, 292);
+            this.CaseChikorita.Location = new System.Drawing.Point(400, 438);
             this.CaseChikorita.Name = "CaseChikorita";
             this.CaseChikorita.Size = new System.Drawing.Size(400, 140);
-            this.CaseChikorita.TabIndex = 4;
+            this.CaseChikorita.TabIndex = 7;
             // 
             // CasePikachu
             // 
             this.CasePikachu.BackColor = System.Drawing.Color.Transparent;
             this.CasePikachu.ForeColor = System.Drawing.Color.White;
-            this.CasePikachu.Location = new System.Drawing.Point(400, 146);
+            this.CasePikachu.Location = new System.Drawing.Point(0, 438);
             this.CasePikachu.Name = "CasePikachu";
             this.CasePikachu.Size = new System.Drawing.Size(400, 140);
-            this.CasePikachu.TabIndex = 3;
+            this.CasePikachu.TabIndex = 6;
+            // 
+            // CaseRattata
+            // 
+            this.CaseRattata.BackColor = System.Drawing.Color.Transparent;
+            this.CaseRattata.ForeColor = System.Drawing.Color.White;
+            this.CaseRattata.Location = new System.Drawing.Point(400, 292);
+            this.CaseRattata.Name = "CaseRattata";
+            this.CaseRattata.Size = new System.Drawing.Size(400, 140);
+            this.CaseRattata.TabIndex = 5;
+            // 
+            // CasePidgey
+            // 
+            this.CasePidgey.BackColor = System.Drawing.Color.Transparent;
+            this.CasePidgey.ForeColor = System.Drawing.Color.White;
+            this.CasePidgey.Location = new System.Drawing.Point(0, 292);
+            this.CasePidgey.Name = "CasePidgey";
+            this.CasePidgey.Size = new System.Drawing.Size(400, 140);
+            this.CasePidgey.TabIndex = 4;
+            // 
+            // CaseCaterpie
+            // 
+            this.CaseCaterpie.BackColor = System.Drawing.Color.Transparent;
+            this.CaseCaterpie.ForeColor = System.Drawing.Color.White;
+            this.CaseCaterpie.Location = new System.Drawing.Point(400, 146);
+            this.CaseCaterpie.Name = "CaseCaterpie";
+            this.CaseCaterpie.Size = new System.Drawing.Size(400, 140);
+            this.CaseCaterpie.TabIndex = 3;
             // 
             // CaseSquirtle
             // 
@@ -143,11 +143,11 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private CasePekedex CaseMew;
-        private CasePekedex CaseRatata;
-        private CasePekedex CasePidgey;
         private CasePekedex CaseChikorita;
         private CasePekedex CasePikachu;
+        private CasePekedex CaseRattata;
+        private CasePekedex CasePidgey;
+        private CasePekedex CaseCaterpie;
         private CasePekedex CaseSquirtle;
         private CasePekedex CaseCharmender;
         private CasePekedex CaseBulbusaure;
