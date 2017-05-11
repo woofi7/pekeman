@@ -18,12 +18,12 @@ namespace Pekeman
         private static int nbAttempt;
         private Random rng = new Random();
         private Player _Player;
-        public BattleManager(Map map, Player player)
+        public BattleManager(Map map)
         {
             InitializeComponent();
             
             _Map = map;
-            _Player = player;
+            
             Hero = new Pokemon();
             Hero.Level = 3;
             this.DoubleBuffered = true;

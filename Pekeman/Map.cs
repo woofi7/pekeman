@@ -27,7 +27,7 @@ namespace Pekeman
             InitializeComponent();
             DoubleBuffered = true;
             LoadPokemon();
-            Battle = new BattleManager(this, player);
+            Battle = new BattleManager(this);
             Battle.Visible = false;
             Controls.Add(Battle);
             EventZones = new EventManager(Battle);
