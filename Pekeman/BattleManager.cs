@@ -27,7 +27,7 @@ namespace Pekeman
             Hero = new Pokemon();
             Hero.Level = 3;
             this.DoubleBuffered = true;
-            Hero = _Player.InitialPokemon;
+            Hero = _Map.PokemonList.ElementAt(1);
             PbHpHero.Maximum = Hero.MaximumHp;
             PbHpHero.Value = Hero.CurrentHp;
             LblNomHero.Text = Hero.Name;
