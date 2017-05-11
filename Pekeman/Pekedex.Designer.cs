@@ -132,6 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "Pekedex";
             this.Size = new System.Drawing.Size(850, 628);
             this.panel1.ResumeLayout(false);

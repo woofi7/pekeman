@@ -19,25 +19,31 @@ namespace Pekeman
         public Npc[] NpcList;
 
         public MapData _mapData = new MapData();
+
+        
         private Image[] sprite = new Image[2048];
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
+        private FrmPekeman frmPekeman;
 
         public Map()
         {
             InitializeComponent();
         }
 
-        public void InitializeMap()
+        
+
+        public void InitializeMap(FrmPekeman frm)
         {
             DoubleBuffered = true;
 
             LoadMap("../../../mapTemplate.json");
             LoadPokemon();
             LoadNpc();
-
+            frmPekeman = frm;
             Battle = new BattleManager(this);
+            Battle.InitialzeBattleManager(frm);
             Battle.Visible = false;
             Controls.Add(Battle);
 

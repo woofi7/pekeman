@@ -15,6 +15,8 @@ namespace Pekeman
     {
         private readonly Player _player = new Player();
 
+        public Pekedex _Pekedex;
+
         public bool RightMovement;
         public bool LeftMovement;
         public bool UpMovement;
@@ -25,13 +27,17 @@ namespace Pekeman
         {
             InitializeComponent();
             
+            
+            WinStart.InitializeWinStart(this);
             MapPeke.player = _player;
-            MapPeke.InitializeMap();
+            MapPeke.InitializeMap(this);
+            _Pekedex = new Pekedex();
+            _Pekedex.InitializePekedex(MapPeke);
             ControlPanel.InitializeControlPanel(this);
+            WinStart.Visible = false;
+            
         }
-
         
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

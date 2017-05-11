@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.PnlBattleScene = new System.Windows.Forms.Panel();
+            this.PbHpHero = new System.Windows.Forms.ProgressBar();
+            this.LblNomHero = new System.Windows.Forms.Label();
+            this.PbHpWild = new System.Windows.Forms.ProgressBar();
+            this.LblNomWild = new System.Windows.Forms.Label();
             this.PnlPeke = new System.Windows.Forms.Panel();
             this.PnlWild = new System.Windows.Forms.Panel();
             this.BtnAttack = new System.Windows.Forms.Button();
             this.BtnCatch = new System.Windows.Forms.Button();
             this.BtnRun = new System.Windows.Forms.Button();
             this.customGUI1 = new Pekeman.CustomGUI();
-            this.LblNomWild = new System.Windows.Forms.Label();
-            this.PbHpWild = new System.Windows.Forms.ProgressBar();
-            this.PbHpHero = new System.Windows.Forms.ProgressBar();
-            this.LblNomHero = new System.Windows.Forms.Label();
             this.PnlBattleScene.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,42 @@
             this.PnlBattleScene.Name = "PnlBattleScene";
             this.PnlBattleScene.Size = new System.Drawing.Size(512, 287);
             this.PnlBattleScene.TabIndex = 0;
+            // 
+            // PbHpHero
+            // 
+            this.PbHpHero.Location = new System.Drawing.Point(111, 170);
+            this.PbHpHero.Name = "PbHpHero";
+            this.PbHpHero.Size = new System.Drawing.Size(100, 10);
+            this.PbHpHero.TabIndex = 5;
+            // 
+            // LblNomHero
+            // 
+            this.LblNomHero.AutoSize = true;
+            this.LblNomHero.BackColor = System.Drawing.Color.Transparent;
+            this.LblNomHero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNomHero.Location = new System.Drawing.Point(107, 147);
+            this.LblNomHero.Name = "LblNomHero";
+            this.LblNomHero.Size = new System.Drawing.Size(51, 20);
+            this.LblNomHero.TabIndex = 4;
+            this.LblNomHero.Text = "label1";
+            // 
+            // PbHpWild
+            // 
+            this.PbHpWild.Location = new System.Drawing.Point(342, 61);
+            this.PbHpWild.Name = "PbHpWild";
+            this.PbHpWild.Size = new System.Drawing.Size(100, 10);
+            this.PbHpWild.TabIndex = 3;
+            // 
+            // LblNomWild
+            // 
+            this.LblNomWild.AutoSize = true;
+            this.LblNomWild.BackColor = System.Drawing.Color.Transparent;
+            this.LblNomWild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNomWild.Location = new System.Drawing.Point(338, 38);
+            this.LblNomWild.Name = "LblNomWild";
+            this.LblNomWild.Size = new System.Drawing.Size(51, 20);
+            this.LblNomWild.TabIndex = 2;
+            this.LblNomWild.Text = "label1";
             // 
             // PnlPeke
             // 
@@ -85,7 +121,7 @@
             this.BtnAttack.Name = "BtnAttack";
             this.BtnAttack.Size = new System.Drawing.Size(132, 50);
             this.BtnAttack.TabIndex = 2;
-            this.BtnAttack.Text = "Attack";
+            this.BtnAttack.Text = "Attaquer";
             this.BtnAttack.UseVisualStyleBackColor = false;
             this.BtnAttack.Click += new System.EventHandler(this.BtnAttack_Click);
             // 
@@ -97,7 +133,7 @@
             this.BtnCatch.Name = "BtnCatch";
             this.BtnCatch.Size = new System.Drawing.Size(132, 50);
             this.BtnCatch.TabIndex = 3;
-            this.BtnCatch.Text = "Catch";
+            this.BtnCatch.Text = "Attraper";
             this.BtnCatch.UseVisualStyleBackColor = false;
             this.BtnCatch.Click += new System.EventHandler(this.BtnCatch_Click);
             // 
@@ -109,7 +145,7 @@
             this.BtnRun.Name = "BtnRun";
             this.BtnRun.Size = new System.Drawing.Size(132, 50);
             this.BtnRun.TabIndex = 4;
-            this.BtnRun.Text = "Run";
+            this.BtnRun.Text = "Fuire";
             this.BtnRun.UseVisualStyleBackColor = false;
             this.BtnRun.Click += new System.EventHandler(this.BtnRun_Click);
             // 
@@ -120,42 +156,6 @@
             this.customGUI1.Name = "customGUI1";
             this.customGUI1.Size = new System.Drawing.Size(512, 95);
             this.customGUI1.TabIndex = 1;
-            // 
-            // LblNomWild
-            // 
-            this.LblNomWild.AutoSize = true;
-            this.LblNomWild.BackColor = System.Drawing.Color.Transparent;
-            this.LblNomWild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNomWild.Location = new System.Drawing.Point(338, 38);
-            this.LblNomWild.Name = "LblNomWild";
-            this.LblNomWild.Size = new System.Drawing.Size(51, 20);
-            this.LblNomWild.TabIndex = 2;
-            this.LblNomWild.Text = "label1";
-            // 
-            // PbHpWild
-            // 
-            this.PbHpWild.Location = new System.Drawing.Point(342, 61);
-            this.PbHpWild.Name = "PbHpWild";
-            this.PbHpWild.Size = new System.Drawing.Size(100, 10);
-            this.PbHpWild.TabIndex = 3;
-            // 
-            // PbHpHero
-            // 
-            this.PbHpHero.Location = new System.Drawing.Point(111, 170);
-            this.PbHpHero.Name = "PbHpHero";
-            this.PbHpHero.Size = new System.Drawing.Size(100, 10);
-            this.PbHpHero.TabIndex = 5;
-            // 
-            // LblNomHero
-            // 
-            this.LblNomHero.AutoSize = true;
-            this.LblNomHero.BackColor = System.Drawing.Color.Transparent;
-            this.LblNomHero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNomHero.Location = new System.Drawing.Point(107, 147);
-            this.LblNomHero.Name = "LblNomHero";
-            this.LblNomHero.Size = new System.Drawing.Size(51, 20);
-            this.LblNomHero.TabIndex = 4;
-            this.LblNomHero.Text = "label1";
             // 
             // BattleManager
             // 

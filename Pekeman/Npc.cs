@@ -114,7 +114,7 @@ namespace Pekeman
                 if (posYMax > posY)
                 {
                     collisionIndex = posX * mapData.Size.Width + posYMax;
-                    System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
+                    //System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
                     if (!mapData.Layers.Collision[collisionIndex])
                     {
                         ScreenX = oldX;
@@ -124,7 +124,7 @@ namespace Pekeman
                 else if (posYMin < posY)
                 {
                     collisionIndex = posX * mapData.Size.Width + posYMin;
-                    System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
+                    //System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
                     if (!mapData.Layers.Collision[collisionIndex])
                     {
                         ScreenX = oldX;
