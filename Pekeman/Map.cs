@@ -16,11 +16,12 @@ namespace Pekeman
         public EventManager EventZones;
         public Pokemon[] PokemonList;
 
-        private MapData _mapData = new MapData();
+        public MapData _mapData = new MapData();
         private Image[] sprite = new Image[2048];
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
+        public Npc npc;
 
         public Map()
         {
@@ -135,27 +136,48 @@ namespace Pekeman
             }
         }
 
-        private void DrawnNpc(Graphics g)
-        {
-            int posX = 100;
-            int posY = 100;
-
-            int sourceX = Npc.MovementAnimation * 32;
-            int sourceY = 0;
-
-            g.DrawImage(Resources.npc, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
-                , 32, 32), GraphicsUnit.Pixel);
-        }
-
         private void DrawPlayer(Graphics g)
         {
             int posX = _centerPoint.X - 16;
             int posY = _centerPoint.Y - 16;
             int sourceX = player.MovementAnimation * 32;
+            int sourceY = ComputeSourceY((int) player.Angle);
+
+            g.DrawImage(Resources.player, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
+                , 32, 32), GraphicsUnit.Pixel);
+
+            DrawPseudo(g, posX, posY, player.Name);
+        }
+
+        private void DrawnNpc(Graphics g)
+        {
+            double tmpX = npc.ScreenX;
+            double tmpY = npc.ScreenY;
+            double mapWidth = Width;
+            double mapHeight = Height;
+            double cornerScreenX = mapWidth / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
+            double cornerScreenY = mapHeight / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
+
+            tmpX = cornerScreenX + tmpX * 32;
+            tmpY = cornerScreenY + tmpY * 32;
+
+            int posX = (int) tmpX;
+            int posY = (int) tmpY;
+
+            int sourceX = npc.MovementAnimation * 32;
+            int sourceY = ComputeSourceY((int) npc.Angle);
+
+            g.DrawImage(Resources.npc, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
+                , 32, 32), GraphicsUnit.Pixel);
+
+            DrawPseudo(g, posX, posY, npc.Name);
+        }
+
+        private static int ComputeSourceY(int angle)
+        {
             int sourceY = 0;
 
-
-            switch ((int) player.Angle)
+            switch (angle)
             {
                 case 0:
                     sourceY = 32;
@@ -170,17 +192,16 @@ namespace Pekeman
                     sourceY = 0;
                     break;
             }
+            return sourceY;
+        }
 
+        private void DrawPseudo(Graphics g, int posX, int posY, string name)
+        {
             Font font = new Font("Arial", 10, FontStyle.Bold);
-
-            SizeF size = g.MeasureString(player.Name, font);
-
-            g.DrawImage(Resources.player, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
-                , 32, 32), GraphicsUnit.Pixel);
-
+            SizeF size = g.MeasureString(name, font);
             SolidBrush brush = new SolidBrush(Color.FromArgb(128, 32, 32, 32));
             g.FillRectangle(brush, posX - (size.Width - 32) / 2, posY - 20, size.Width, size.Height);
-            g.DrawString(player.Name, font, Brushes.WhiteSmoke, posX - (size.Width - 32) / 2 + 1, posY - 20);
+            g.DrawString(name, font, Brushes.WhiteSmoke, posX - (size.Width - 32) / 2 + 1, posY - 20);
         }
 
         private void DrawDebug(Graphics g)
@@ -316,7 +337,6 @@ namespace Pekeman
             }
 
             EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY);
-            Refresh();
         }
 
         [JsonObject(MemberSerialization.OptIn)]

@@ -14,6 +14,7 @@ namespace Pekeman
     public partial class FrmPekeman : Form
     {
         private readonly Player _player = new Player();
+        private Npc _npc = new Npc();
 
         public bool RightMovement;
         public bool LeftMovement;
@@ -26,6 +27,8 @@ namespace Pekeman
             InitializeComponent();
             
             MapPeke.player = _player;
+            MapPeke.npc = _npc;
+            _npc._mapData = MapPeke._mapData;
             ControlPanel.InitializeControlPanel(this);
         }
 
@@ -76,7 +79,6 @@ namespace Pekeman
                     break;
                 case Keys.F3:
                     Debug.DebugMode = !Debug.DebugMode;
-                    MapPeke.Refresh();
                     break;
             }
         }
@@ -114,9 +116,11 @@ namespace Pekeman
                 _player.Angle = 3 * Math.PI / 2;
             }
             MapPeke.MovePlayer(distance);
+
+            Refresh();
         }
 
-        private void DeplacementJoueur_Tick(object sender, EventArgs e)
+        private void Deplacement_Tick(object sender, EventArgs e)
         {
             if (RightMovement || LeftMovement || UpMovement || DownMovement)
             {
@@ -128,7 +132,7 @@ namespace Pekeman
                 }
             }
 
-            Refresh();
+            _npc.UpdateMovementAnimation();
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -139,16 +143,6 @@ namespace Pekeman
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void DeplacementNpc_Tick(object sender, EventArgs e)
-        {
-            Npc.MovementAnimation++;
-
-            if (Npc.MovementAnimation == 3)
-            {
-                Npc.MovementAnimation = 0;
-            }
         }
     }
 }
