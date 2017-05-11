@@ -35,6 +35,10 @@
             this.BtnCatch = new System.Windows.Forms.Button();
             this.BtnRun = new System.Windows.Forms.Button();
             this.customGUI1 = new Pekeman.CustomGUI();
+            this.LblNomWild = new System.Windows.Forms.Label();
+            this.PbHpWild = new System.Windows.Forms.ProgressBar();
+            this.PbHpHero = new System.Windows.Forms.ProgressBar();
+            this.LblNomHero = new System.Windows.Forms.Label();
             this.PnlBattleScene.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +48,10 @@
             this.PnlBattleScene.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PnlBattleScene.BackgroundImage = global::Pekeman.Properties.Resources.BattleScene;
             this.PnlBattleScene.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PnlBattleScene.Controls.Add(this.PbHpHero);
+            this.PnlBattleScene.Controls.Add(this.LblNomHero);
+            this.PnlBattleScene.Controls.Add(this.PbHpWild);
+            this.PnlBattleScene.Controls.Add(this.LblNomWild);
             this.PnlBattleScene.Controls.Add(this.PnlPeke);
             this.PnlBattleScene.Controls.Add(this.PnlWild);
             this.PnlBattleScene.Location = new System.Drawing.Point(0, 0);
@@ -91,7 +99,7 @@
             this.BtnCatch.TabIndex = 3;
             this.BtnCatch.Text = "Catch";
             this.BtnCatch.UseVisualStyleBackColor = false;
-            this.BtnCatch.Click += new System.EventHandler(this.button2_Click);
+            this.BtnCatch.Click += new System.EventHandler(this.BtnCatch_Click);
             // 
             // BtnRun
             // 
@@ -113,6 +121,42 @@
             this.customGUI1.Size = new System.Drawing.Size(512, 95);
             this.customGUI1.TabIndex = 1;
             // 
+            // LblNomWild
+            // 
+            this.LblNomWild.AutoSize = true;
+            this.LblNomWild.BackColor = System.Drawing.Color.Transparent;
+            this.LblNomWild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNomWild.Location = new System.Drawing.Point(338, 38);
+            this.LblNomWild.Name = "LblNomWild";
+            this.LblNomWild.Size = new System.Drawing.Size(51, 20);
+            this.LblNomWild.TabIndex = 2;
+            this.LblNomWild.Text = "label1";
+            // 
+            // PbHpWild
+            // 
+            this.PbHpWild.Location = new System.Drawing.Point(342, 61);
+            this.PbHpWild.Name = "PbHpWild";
+            this.PbHpWild.Size = new System.Drawing.Size(100, 10);
+            this.PbHpWild.TabIndex = 3;
+            // 
+            // PbHpHero
+            // 
+            this.PbHpHero.Location = new System.Drawing.Point(111, 170);
+            this.PbHpHero.Name = "PbHpHero";
+            this.PbHpHero.Size = new System.Drawing.Size(100, 10);
+            this.PbHpHero.TabIndex = 5;
+            // 
+            // LblNomHero
+            // 
+            this.LblNomHero.AutoSize = true;
+            this.LblNomHero.BackColor = System.Drawing.Color.Transparent;
+            this.LblNomHero.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNomHero.Location = new System.Drawing.Point(107, 147);
+            this.LblNomHero.Name = "LblNomHero";
+            this.LblNomHero.Size = new System.Drawing.Size(51, 20);
+            this.LblNomHero.TabIndex = 4;
+            this.LblNomHero.Text = "label1";
+            // 
             // BattleManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +171,7 @@
             this.Name = "BattleManager";
             this.Size = new System.Drawing.Size(512, 382);
             this.PnlBattleScene.ResumeLayout(false);
+            this.PnlBattleScene.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -140,5 +185,9 @@
         private System.Windows.Forms.Button BtnAttack;
         private System.Windows.Forms.Button BtnCatch;
         private System.Windows.Forms.Button BtnRun;
+        private System.Windows.Forms.ProgressBar PbHpHero;
+        private System.Windows.Forms.Label LblNomHero;
+        private System.Windows.Forms.ProgressBar PbHpWild;
+        private System.Windows.Forms.Label LblNomWild;
     }
 }

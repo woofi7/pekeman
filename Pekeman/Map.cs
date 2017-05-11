@@ -27,12 +27,13 @@ namespace Pekeman
             InitializeComponent();
             DoubleBuffered = true;
             LoadPokemon();
-            Battle = new BattleManager(this);
+            Battle = new BattleManager(this, player);
             Battle.Visible = false;
             Controls.Add(Battle);
             EventZones = new EventManager(Battle);
             
         }
+        
 
         public void LoadPokemon()
         {
@@ -66,6 +67,15 @@ namespace Pekeman
             player.ScreenY = _mapData.Spawn.Y * 32 + 10;
         }
 
+        public void PartieTerminer()
+        {
+            
+        }
+
+        public void CatchPokemon(Pokemon wild)
+        {
+            
+        }
         public void LoadMapSprite(string file)
         {
             if (file == "")

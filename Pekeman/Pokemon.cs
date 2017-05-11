@@ -50,11 +50,11 @@ namespace Pekeman
         public int CurrentHp;
         private Random _random = new Random();
 
-        public bool CanBeCatch()
+        public bool CanBeCatch(Pokemon wild)
         {
-            double a = CurrentHp * 2.0;
-            double b = MaximumHp * 3.0;
-            double c = CatchRate;
+            double a = wild.CurrentHp * 2.0;
+            double b = wild.MaximumHp * 3.0;
+            double c = wild.CatchRate;
             double d = 0;
 
             if (b > 255.0)
@@ -109,6 +109,30 @@ namespace Pekeman
             }
 
             return false;
+        }
+
+        public int Dammage(Pokemon attacker, Pokemon defender)
+        {
+
+            double a = attacker.Attack * 1.5;
+            double b = attacker.Attack;
+            double c = CritMultiplyer();
+            double d = defender.Defence;
+            double r = _random.Next(217, 255);
+            double dmg = ((((attacker.Level * .04 * c) + 2) * a * b / 50 / d) + 2) * r / 255;
+            return (int) dmg;
+        }
+
+        
+        private double CritMultiplyer()
+        {
+            double c = 1;
+            int i = _random.Next(1, 101);
+            if (i <= 15)
+            {
+                c = 1.15;
+            }
+            return c;
         }
     }
 }
