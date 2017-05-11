@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -15,26 +16,52 @@ namespace Pekeman
         public BattleManager Battle;
         public EventManager EventZones;
         public Pokemon[] PokemonList;
+        public Npc[] NpcList;
 
         public MapData _mapData = new MapData();
         private Image[] sprite = new Image[2048];
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
-        public Npc npc;
 
         public Map()
         {
             InitializeComponent();
+        }
+
+        public void InitializeMap()
+        {
             DoubleBuffered = true;
+
+            LoadMap("../../../mapTemplate.json");
             LoadPokemon();
+            LoadNpc();
+
             Battle = new BattleManager(this);
             Battle.Visible = false;
             Controls.Add(Battle);
+
             EventZones = new EventManager(Battle);
-            
         }
-        
+
+        public void LoadNpc()
+        {
+            NpcList = new Npc[_mapData.Npc.Length];
+
+            for (var i = 0; i < _mapData.Npc.Length; i++)
+            {
+                Thread.Sleep(20);
+                var tmpNpc = new Npc
+                {
+                    Name = _mapData.Npc[i].Name,
+                    X = _mapData.Npc[i].Spawn.X,
+                    Y = _mapData.Npc[i].Spawn.Y
+                };
+
+                NpcList[i] = tmpNpc;
+                tmpNpc.StartThread(_mapData);
+            }
+        }
 
         public void LoadPokemon()
         {
@@ -112,24 +139,19 @@ namespace Pekeman
         {
             try
             {
-                if (_mapData.Size == null)
-                    {
-                        LoadMap("../../../mapTemplate.json");
-                    }
+                Graphics g = e.Graphics;
+                _centerPoint = new Point(Width / 2, Height / 2);
 
-                    Graphics g = e.Graphics;
-                    _centerPoint = new Point(Width / 2, Height / 2);
+                double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
+                double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
 
-                    double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
-                    double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
-
-                    DrawOutMap(centeredYCorner, centeredXCorner, g);
-                    DrawBackground(centeredYCorner, centeredXCorner, g);
-                    DrawPlayer(g);
-                    DrawnNpc(g);
-                    DrawForeground(centeredYCorner, centeredXCorner, g);
-                    DrawDebug(g);
-                }
+                DrawOutMap(centeredYCorner, centeredXCorner, g);
+                DrawBackground(centeredYCorner, centeredXCorner, g);
+                DrawPlayer(g);
+                DrawnNpc(g);
+                DrawForeground(centeredYCorner, centeredXCorner, g);
+                DrawDebug(g);
+            }
             catch (Exception)
             {
                 // ignored
@@ -151,26 +173,30 @@ namespace Pekeman
 
         private void DrawnNpc(Graphics g)
         {
-            double tmpX = npc.ScreenX;
-            double tmpY = npc.ScreenY;
-            double mapWidth = Width;
-            double mapHeight = Height;
-            double cornerScreenX = mapWidth / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
-            double cornerScreenY = mapHeight / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
+            foreach (var npc in NpcList)
+            {
 
-            tmpX = cornerScreenX + tmpX * 32;
-            tmpY = cornerScreenY + tmpY * 32;
+                double tmpX = npc.ScreenX;
+                double tmpY = npc.ScreenY;
+                double mapWidth = Width;
+                double mapHeight = Height;
+                double cornerScreenX = mapWidth / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
+                double cornerScreenY = mapHeight / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
 
-            int posX = (int) tmpX;
-            int posY = (int) tmpY;
+                tmpX = cornerScreenX + tmpX;
+                tmpY = cornerScreenY + tmpY;
 
-            int sourceX = npc.MovementAnimation * 32;
-            int sourceY = ComputeSourceY((int) npc.Angle);
+                int posX = (int) tmpX;
+                int posY = (int) tmpY;
 
-            g.DrawImage(Resources.npc, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
-                , 32, 32), GraphicsUnit.Pixel);
+                int sourceX = npc.MovementAnimation * 32;
+                int sourceY = ComputeSourceY((int) npc.Angle);
 
-            DrawPseudo(g, posX, posY, npc.Name);
+                g.DrawImage(Resources.npc, new Rectangle(posX, posY, 32, 32), new Rectangle(sourceX, sourceY
+                    , 32, 32), GraphicsUnit.Pixel);
+
+                DrawPseudo(g, posX, posY, npc.Name);
+            }
         }
 
         private static int ComputeSourceY(int angle)
@@ -359,6 +385,19 @@ namespace Pekeman
 
             [JsonProperty("events")]
             public MapEvent[] Events { get; set; }
+
+            [JsonProperty("npc")]
+            public NpcData[] Npc { get; set; }
+        }
+
+        [JsonObject(MemberSerialization.OptIn)]
+        public class NpcData
+        {
+            [JsonProperty("name")]
+            public string Name { get; set; }
+
+            [JsonProperty("spawn")]
+            public MapPos Spawn { get; set; }
         }
 
         [JsonObject(MemberSerialization.OptIn)]
@@ -416,6 +455,14 @@ namespace Pekeman
 
             [JsonProperty("y")]
             public int Y { get; set; }
+        }
+
+        public void UpdateMovementAnimation()
+        {
+            foreach (var npc1 in NpcList)
+            {
+                npc1.UpdateMovementAnimation();
+            }
         }
     }
 }

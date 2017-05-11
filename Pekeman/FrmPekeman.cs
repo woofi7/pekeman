@@ -14,7 +14,6 @@ namespace Pekeman
     public partial class FrmPekeman : Form
     {
         private readonly Player _player = new Player();
-        private Npc _npc = new Npc();
 
         public bool RightMovement;
         public bool LeftMovement;
@@ -27,8 +26,7 @@ namespace Pekeman
             InitializeComponent();
             
             MapPeke.player = _player;
-            MapPeke.npc = _npc;
-            _npc._mapData = MapPeke._mapData;
+            MapPeke.InitializeMap();
             ControlPanel.InitializeControlPanel(this);
         }
 
@@ -132,7 +130,7 @@ namespace Pekeman
                 }
             }
 
-            _npc.UpdateMovementAnimation();
+            MapPeke.UpdateMovementAnimation();
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
