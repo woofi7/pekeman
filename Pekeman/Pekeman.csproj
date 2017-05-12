@@ -116,6 +116,12 @@
     <Compile Include="WindowStart.Designer.cs">
       <DependentUpon>WindowStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinOption.Designer.cs">
+      <DependentUpon>WinOption.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BattleManager.resx">
       <DependentUpon>BattleManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +161,9 @@
     </Compile>
     <EmbeddedResource Include="WindowStart.resx">
       <DependentUpon>WindowStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinOption.resx">
+      <DependentUpon>WinOption.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -18,7 +18,6 @@ namespace Pekeman
         private static int nbAttempt;
         private Random rng = new Random();
         private Player _Player;
-        private FrmPekeman frmPekeman;
         private Pekedex pekedex;
         public BattleManager(Map map)
         {
@@ -41,18 +40,19 @@ namespace Pekeman
         public void InitialzeBattleManager(FrmPekeman frm)
         {
             pekedex = frm._Pekedex;
-            pekedex.AddPeke(Hero);
+            
         }
         public void StartBattle()
         {
+            pekedex.AddPeke(Hero, true);
             Wild = new Pokemon();
-            
             DeterminerPokemon();
             PnlWild.BackgroundImage = Image.FromFile("../../Resources/" + Wild.ImgFront);
             this.Visible = true;
             placerComp();
             PbHpHero.Value = Hero.CurrentHp;
             nbAttempt = 0;
+            
             
         }
 
@@ -113,7 +113,7 @@ namespace Pekeman
             else
             {
                 this.Visible = false;
-                pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild, false);
                 _Map.PartieTerminer();
             }
         }
@@ -124,7 +124,7 @@ namespace Pekeman
             if (Hero.CanEscape(Wild, nbAttempt))
             {
                 this.Visible = false;
-                pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild,false);
                 nbAttempt = 0;
             }
             else
@@ -139,7 +139,8 @@ namespace Pekeman
             
             if (Hero.CanBeCatch(Wild))
             {
-                pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild, true);
+                _Player.PokemonList.Add(Wild);
                 this.Visible = false;
             }
             else

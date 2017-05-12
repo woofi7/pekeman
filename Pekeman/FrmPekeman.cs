@@ -37,7 +37,7 @@ namespace Pekeman
             _Pekedex.InitializePekedex(MapPeke);
 
             ControlPanel.InitializeControlPanel(this);
-            WinStart.Visible = false;
+            
             
         }
         

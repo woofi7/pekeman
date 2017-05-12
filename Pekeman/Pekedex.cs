@@ -53,7 +53,7 @@ namespace Pekeman
             
         }
 
-        public void AddPeke(Pokemon peke)
+        public void AddPeke(Pokemon peke, bool isCaptured)
         {
             
             foreach (CasePekedex casePeke in ListeCase)
@@ -63,8 +63,15 @@ namespace Pekeman
                     casePeke.PnlImgPeke.BackgroundImage = Image.FromFile("../../Resources/" + peke.ImgFront);
                     casePeke.LblNomI.Text = peke.Name;
                     casePeke.LblTypeI.Text = peke.Name;
-                    casePeke.LblCapturerI.Text = "Non";
                     casePeke.LblDescI.Text = peke.Name;
+                    if (isCaptured)
+                    {
+                        casePeke.LblCapturerI.Text = "Oui";
+                    }
+                    else if(casePeke.LblCapturerI.Text != "Oui")
+                    {
+                        casePeke.LblCapturerI.Text = "Non";
+                    }
                 }
             }
           
