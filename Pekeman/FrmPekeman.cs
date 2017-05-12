@@ -40,11 +40,11 @@ namespace Pekeman
         private void InitializeFrmPekeman()
         {
             LoadPokemon();
+            CapPeke = new CapturedPekeman(this);
             WinStart.InitializeWinStart(this);
             MapPeke.InitializeMap(this);
             Pekedex.InitializePekedex(MapPeke);
             ControlPanel.InitializeControlPanel(this);
-            CapPeke = new CapturedPekeman(this);
         }
 
         public void LoadPokemon()

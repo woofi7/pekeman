@@ -61,39 +61,43 @@ namespace Pekeman.Entity
 
         public void MovePlayer(double ellapsedSeconds)
         {
-            double distance = 0;
-
-            if (RightMovement)
+            if (!_map.Disable)
             {
-                distance = ellapsedSeconds * BaseSpeed;
-                Angle = 0;
-            }
-            else if (LeftMovement)
-            {
-                distance = ellapsedSeconds * BaseSpeed;
-                Angle = Math.PI;
+                double distance = 0;
+
+                if (RightMovement)
+                {
+                    distance = ellapsedSeconds * BaseSpeed;
+                    Angle = 0;
+                }
+                else if (LeftMovement)
+                {
+                    distance = ellapsedSeconds * BaseSpeed;
+                    Angle = Math.PI;
+                }
+
+                else if (UpMovement)
+                {
+                    distance = ellapsedSeconds * BaseSpeed;
+                    Angle = Math.PI / 2;
+                }
+                else if (DownMovement)
+                {
+                    distance = ellapsedSeconds * BaseSpeed;
+                    Angle = 3 * Math.PI / 2;
+                }
+
+                double oldX = X;
+                double oldY = Y;
+
+                MoveEntity(distance);
+
+                if ((int) (X / 32) != (int) (oldX / 32) || (int) (Y / 32) != (int) (oldY / 32))
+                {
+                    CheckEvent();
+                }
             }
 
-            else if (UpMovement)
-            {
-                distance = ellapsedSeconds * BaseSpeed;
-                Angle = Math.PI / 2;
-            }
-            else if (DownMovement)
-            {
-                distance = ellapsedSeconds * BaseSpeed;
-                Angle = 3 * Math.PI / 2;
-            }
-
-            double oldX = X;
-            double oldY = Y;
-
-            MoveEntity(distance);
-
-            if ((int) (X / 32) != (int) (oldX / 32) || (int) (Y / 32) != (int) (oldY / 32))
-            {
-                CheckEvent();
-            }
         }
 
         private void CheckEvent()
@@ -128,6 +132,8 @@ namespace Pekeman.Entity
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
+                _map.Disable = true;
                 return;
             }
         }

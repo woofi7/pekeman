@@ -13,6 +13,7 @@ namespace Pekeman.Map2
         public FrmPekeman FrmPekeman;
         public BattleManager Battle = new BattleManager();
         public MapDataJson MapData = new MapDataJson();
+        public bool Disable = false;
 
         private readonly Image[] _sprite = new Image[2048];
         private const int TileSize = 32;

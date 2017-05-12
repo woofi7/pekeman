@@ -13,11 +13,11 @@ namespace Pekeman
 {
     public partial class CapturedPekeman : CustomGUI
     {
-        private Player _player;
+        private FrmPekeman _frmPekeman;
         public CapturedPekeman(FrmPekeman frm)
         {
             InitializeComponent();
-            _player = frm.ThePlayer;
+            _frmPekeman = frm;
 
         }
 
@@ -33,10 +33,10 @@ namespace Pekeman
             {
                 for (int j = 0; j < TlpPeke.ColumnCount; j++)
                 {
-                    if (PekeInList < _player.PokemonList.Count)
+                    if (PekeInList < _frmPekeman.ThePlayer.PokemonList.Count)
                     {
                         PictureBox p = new PictureBox();
-                        p.Image = Image.FromFile("../../Resources/" + _player.PokemonList[PekeInList].ImgFront);
+                        p.Image = Image.FromFile("../../Resources/" + _frmPekeman.ThePlayer.PokemonList[PekeInList].ImgFront);
                         TlpPeke.Controls.Add(p,i,j);
                     }
                 }
