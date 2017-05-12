@@ -10,6 +10,7 @@ namespace Pekeman.Entity
     public class Npc : Entity
     {
         public static List<Npc> NpcList = new List<Npc>();
+        public static List<Thread> ThreadList = new List<Thread>();
         private Stopwatch _stopwatch;
 
         public Npc(MapDataJson mapData, string name) : base(mapData, name)
@@ -49,6 +50,7 @@ namespace Pekeman.Entity
         {
             Thread t = new Thread(MoveNpc);
             t.Start();
+            ThreadList.Add(t);
         }
 
         /// <summary>

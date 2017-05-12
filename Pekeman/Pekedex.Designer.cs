@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CaseChikorita = new Pekeman.CasePekedex();
-            this.CasePikachu = new Pekeman.CasePekedex();
-            this.CaseRattata = new Pekeman.CasePekedex();
-            this.CasePidgey = new Pekeman.CasePekedex();
-            this.CaseCaterpie = new Pekeman.CasePekedex();
-            this.CaseSquirtle = new Pekeman.CasePekedex();
-            this.CaseCharmender = new Pekeman.CasePekedex();
-            this.CaseBulbusaure = new Pekeman.CasePekedex();
+            this.CaseChikorita = new global::Pekeman.CasePekedex();
+            this.CasePikachu = new global::Pekeman.CasePekedex();
+            this.CaseRattata = new global::Pekeman.CasePekedex();
+            this.CasePidgey = new global::Pekeman.CasePekedex();
+            this.CaseCaterpie = new global::Pekeman.CasePekedex();
+            this.CaseSquirtle = new global::Pekeman.CasePekedex();
+            this.CaseCharmender = new global::Pekeman.CasePekedex();
+            this.CaseBulbusaure = new global::Pekeman.CasePekedex();
             this.BtnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();

@@ -34,9 +34,9 @@ namespace Pekeman
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.Deplacement = new System.Windows.Forms.Timer(this.components);
             this.MapPeke = new Map();
-            this.WinStart = new Pekeman.WindowStart();
-            this.ControlPanel = new Pekeman.ControlPanel();
-            this.Chat = new Pekeman.Chat();
+            this.WinStart = new global::Pekeman.WindowStart();
+            this.ControlPanel = new global::Pekeman.ControlPanel();
+            this.Chat = new global::Pekeman.Chat();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.MapPeke.SuspendLayout();
             this.SuspendLayout();

@@ -29,7 +29,7 @@ namespace Pekeman
 
         private void BtnQuitter_Click(object sender, EventArgs e)
         {
-            Dispose();
+            _frmPekeman.CloseGame();
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Pekeman
 
         private void BtnQuit_Click(object sender, EventArgs e)
         {
-            FrmPeke.Menu.Dispose();
+            FrmPeke.MapPeke.EndGame(false);
         }
 
         private void BtnPekeman_Click(object sender, EventArgs e)

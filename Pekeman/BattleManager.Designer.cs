@@ -38,7 +38,7 @@
             this.BtnAttack = new System.Windows.Forms.Button();
             this.BtnCatch = new System.Windows.Forms.Button();
             this.BtnRun = new System.Windows.Forms.Button();
-            this.customGUI1 = new Pekeman.CustomGUI();
+            this.customGUI1 = new global::Pekeman.CustomGUI();
             this.PnlBattleScene.SuspendLayout();
             this.SuspendLayout();
             // 

@@ -16,7 +16,7 @@ namespace Pekeman
     {
         private Player _player;
         private Map _map;
-        private List<CasePekedex> ListeCase = new List<CasePekedex>();
+        public List<CasePekedex> ListeCase = new List<CasePekedex>();
         public Pekedex()
         {
             InitializeComponent();
@@ -85,6 +85,7 @@ namespace Pekeman
         private void BtnClose_Click(object sender, EventArgs e)
         {
             _map.FrmPekeman.ShowPekedex(false);
+            _map.Disable = false;
         }
     }
 }

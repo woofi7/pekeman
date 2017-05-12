@@ -122,18 +122,18 @@ namespace Pekeman.Entity
                 {
                     case EventTypeEnum.EnterPokedex:
                         _map.FrmPekeman.ShowPekedex(true);
+                        _map.Disable = true;
                         break;
                     case EventTypeEnum.EnterPekecenter:
                         _map.Battle.HealPokemon();
                         break;
                     case EventTypeEnum.MeetPokemon:
                         _map.Battle.StartBattle();
+                        _map.Disable = true;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-                _map.Disable = true;
                 return;
             }
         }

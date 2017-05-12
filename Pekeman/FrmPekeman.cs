@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -19,7 +20,8 @@ namespace Pekeman
         public Player ThePlayer;
         private FrmMainMenu _menu;
         public Pokemon[] PokemonList;
-        
+        public FrmEndGame EndGame;
+
         public Pekedex Pekedex;
         public CapturedPekeman CapPeke;
         public bool OptionsMenu;
@@ -32,7 +34,8 @@ namespace Pekeman
         public FrmPekeman()
         {
             Pekedex = new Pekedex();
-            
+            EndGame = new FrmEndGame(this);
+            EndGame.Visible = false;
             InitializeComponent();
             InitializeFrmPekeman();
         }
@@ -121,6 +124,15 @@ namespace Pekeman
                 Pekedex.Visible = false;
             }
 
+        }
+
+        public void CloseGame()
+        {
+            foreach (Thread thread in Npc.ThreadList)
+            {
+                thread.Abort();
+            }
+            _menu.Dispose();
         }
     }
 }

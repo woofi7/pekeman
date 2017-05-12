@@ -193,6 +193,26 @@ namespace Pekeman.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imageFinGagne {
+            get {
+                object obj = ResourceManager.GetObject("imageFinGagne", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imageFinPerdu {
+            get {
+                object obj = ResourceManager.GetObject("imageFinPerdu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mainMenu {
             get {
                 object obj = ResourceManager.GetObject("mainMenu", resourceCulture);
@@ -232,7 +252,8 @@ namespace Pekeman.Properties {
         ///			5,5,5,5,5,74,5,5,5,5
         ///		],
         ///		&quot;collision&quot;: [
-        ///			false,false,true,false,false,false,false,false,false [le reste de la chaîne a été tronqué]&quot;;.
+        ///			false,false,true,false,false,false,false,false,false,false,
+        ///			false,fals [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string mapTemplate {
             get {

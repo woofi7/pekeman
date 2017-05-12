@@ -139,11 +139,11 @@
   <data name="charmander_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\charmander_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="caterpie_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\caterpie_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="squirtle_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\squirtle_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pidgey_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pidgey_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,6 +160,9 @@
   <data name="pidgey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pidgey.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="chikorita" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chikorita.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="charmander" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\charmander.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -172,8 +175,8 @@
   <data name="bulbasaur_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bulbasaur_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="chikorita" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chikorita.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="squirtle_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\squirtle_back.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="map_sprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\map_sprite.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,7 +205,10 @@
   <data name="squirtle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\squirtle.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="imageFinGagne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imageFinGagne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imageFinPerdu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imageFinPerdu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

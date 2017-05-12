@@ -316,9 +316,18 @@ namespace Pekeman.Map2
         /// <summary>
         /// Terminer la partie.
         /// </summary>
-        public void EndGame()
+        public void EndGame(bool win)
         {
-
+            if (win)
+            {
+                FrmPekeman.EndGame.BackgroundImage = Resources.imageFinGagne;
+            }
+            else
+            {
+                FrmPekeman.EndGame.BackgroundImage = Resources.imageFinPerdu;
+            }
+            FrmPekeman.EndGame.Visible = true;
+            FrmPekeman.Visible = false;
         }
 
         /// <summary>

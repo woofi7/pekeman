@@ -97,6 +97,7 @@ namespace Pekeman
             {
                 PbHpWild.Value = 0;
                 this.Visible = false;
+                _Map.Disable = false;
             }
         }
 
@@ -113,7 +114,8 @@ namespace Pekeman
             {
                 this.Visible = false;
                 pekedex.AddPeke(Wild, false);
-                _Map.EndGame();
+                _Map.EndGame(false);
+                _Map.Disable = false;
             }
         }
 
@@ -125,6 +127,7 @@ namespace Pekeman
                 this.Visible = false;
                 pekedex.AddPeke(Wild,false);
                 nbAttempt = 0;
+                _Map.Disable = false;
             }
             else
             {
@@ -140,8 +143,24 @@ namespace Pekeman
             {
                 pekedex.AddPeke(Wild, true);
 
+                int count = 0;
+                foreach (CasePekedex casePeke in pekedex.ListeCase)
+                {
+                    if (casePeke.LblCapturerI.Text.Equals("Oui"))
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 7)
+                {
+                    _Map.EndGame(true);
+                }
+
+
                 _Player.PokemonList.Add(Wild);
                 this.Visible = false;
+                _Map.Disable = false;
             }
             else
             {
