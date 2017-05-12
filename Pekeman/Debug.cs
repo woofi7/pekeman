@@ -2,6 +2,6 @@
 {
     public static class Debug
     {
-        public static bool DebugMode = true;
+        public static bool DebugMode;
     }
 }
