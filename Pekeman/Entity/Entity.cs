@@ -18,12 +18,12 @@ namespace Pekeman.Entity
 
         protected readonly Random Random = new Random();
 
-        private readonly Map2.MapDataJson _mapData;
+        protected readonly Map2.MapDataJson MapData;
 
 
         public Entity(Map2.MapDataJson mapData, string name)
         {
-            _mapData = mapData;
+            MapData = mapData;
             Name = name;
         }
 
@@ -65,43 +65,6 @@ namespace Pekeman.Entity
                 X = oldX;
                 Y = oldY;
             }
-
-            if (X / 32 != oldX / 32 && Y / 32 != oldY / 32)
-            {
-                CheckEvent();
-            }
-        }
-
-        private void CheckEvent()
-        {
-            foreach (MapEvent mapEvent in _mapData.Events)
-            {
-                int startX = mapEvent.Area.From.X;
-                int startY = mapEvent.Area.From.Y;
-                int endX = mapEvent.Area.To.X;
-                int endY = mapEvent.Area.To.Y;
-                if (X / 32 < startX || X / 32 > endX || Y / 32 < startY || Y / 32 > endY) continue;
-
-                int chancesMultiplicator = (int) (100 / (mapEvent.Chances * 100));
-
-                int next = Random.Next(chancesMultiplicator);
-                if (next != 0) continue;
-
-                switch (mapEvent.EventType)
-                {
-                    case EventTypeEnum.EnterPokedex:
-                        //TODO: frmPeke.ShowPekedex(true);
-                        break;
-                    case EventTypeEnum.EnterPekecenter:
-                        //TODO: frmPeke.MapPeke.Battle.HealPokemon();
-                        break;
-                    case EventTypeEnum.MeetPokemon:
-                        //TODO: Battle.StartBattle();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
         }
 
         /// <summary>
@@ -112,7 +75,7 @@ namespace Pekeman.Entity
         /// <returns>Index du tableau représenté par (x,y).</returns>
         private int GetCellIndex(int x, int y)
         {
-            return x * _mapData.Size.Width + y;
+            return x * MapData.Size.Width + y;
         }
 
         /// <summary>
@@ -144,17 +107,17 @@ namespace Pekeman.Entity
         private bool CollideWithWorld()
         {
             //Out of map
-            if (X < 0 || X + 32 > _mapData.Size.Width * 32)
+            if (X < 0 || X + 32 > MapData.Size.Width * 32)
             {
                 return true;
             }
-            if (Y < 0 || Y + 32 > _mapData.Size.Width * 32)
+            if (Y < 0 || Y + 32 > MapData.Size.Width * 32)
             {
                 return true;
             }
 
             //Collision
-            if (GetCellIndexUnderPlayer().Any(i => _mapData.Layers.Collision[i]))
+            if (GetCellIndexUnderPlayer().Any(i => MapData.Layers.Collision[i]))
             {
                 return true;
             }

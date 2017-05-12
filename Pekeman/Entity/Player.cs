@@ -80,7 +80,48 @@ namespace Pekeman.Entity
                 distance = ellapsedSeconds * BaseSpeed;
                 Angle = 3 * Math.PI / 2;
             }
+
+            double oldX = X;
+            double oldY = Y;
+
             MoveEntity(distance);
+
+            if (X / 32 != oldX / 32 && Y / 32 != oldY / 32)
+            {
+                CheckEvent();
+            }
+        }
+
+        private void CheckEvent()
+        {
+            foreach (MapEvent mapEvent in MapData.Events)
+            {
+                int startX = mapEvent.Area.From.X;
+                int startY = mapEvent.Area.From.Y;
+                int endX = mapEvent.Area.To.X;
+                int endY = mapEvent.Area.To.Y;
+                if (X / 32 < startX || X / 32 > endX || Y / 32 < startY || Y / 32 > endY) continue;
+
+                int chancesMultiplicator = (int) (100 / (mapEvent.Chances * 100));
+
+                int next = Random.Next(chancesMultiplicator);
+                if (next != 0) continue;
+
+                switch (mapEvent.EventType)
+                {
+                    case EventTypeEnum.EnterPokedex:
+                        //TODO: frmPeke.ShowPekedex(true);
+                        break;
+                    case EventTypeEnum.EnterPekecenter:
+                        //TODO: frmPeke.MapPeke.Battle.HealPokemon();
+                        break;
+                    case EventTypeEnum.MeetPokemon:
+                        //TODO: Battle.StartBattle();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         public void KeyPress(Keys keyCode, bool keyDown)

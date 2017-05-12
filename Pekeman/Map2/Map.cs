@@ -44,6 +44,7 @@ namespace Pekeman.Map2
 
             Battle.InitialzeBattleManager(this);
             Controls.Add(Battle);
+            Npc.LoadNpc(MapData);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Pekeman.Map2
                 _centerPoint = new Point(Width / 2, Height / 2);
 
                 double centeredXCorner = _centerPoint.X - FrmPekeman.ThePlayer.X;
-                double centeredYCorner = _centerPoint.Y - FrmPekeman.ThePlayer.X;
+                double centeredYCorner = _centerPoint.Y - FrmPekeman.ThePlayer.Y;
 
                 DrawOutMap(centeredYCorner, centeredXCorner, g);
                 DrawBackground(centeredYCorner, centeredXCorner, g);

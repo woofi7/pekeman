@@ -25,7 +25,7 @@ namespace Pekeman.Entity
         /// npc qui va calculer son déplacement.
         /// </summary>
         /// <param name="data">Un nom et l'emplacement du spawn du npc.</param>
-        public void LoadNpc(MapDataJson data)
+        public static void LoadNpc(MapDataJson data)
         {
             foreach (NpcData npcData in data.Npc)
             {
@@ -72,7 +72,7 @@ namespace Pekeman.Entity
                 {
                     timeLeft = 2;
                     Angle = Random.Next(4) * Math.PI / 2;
-                    Speed = 0.75 + Random.NextDouble() / 2;
+                    Speed = 0.25 + Random.NextDouble() / 2;
                 }
 
                 MoveEntity(ellapsedSeconds * BaseSpeed);
