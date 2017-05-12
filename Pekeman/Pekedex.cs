@@ -57,9 +57,9 @@ namespace Pekeman
             
             foreach (CasePekedex casePeke in ListeCase)
             {
-                if (casePeke.LblNomI.Text == peke.Name)
+                if (casePeke.LblNumI.Text == peke.Id)
                 {
-                    casePeke.PnlImgPeke.BackgroundImage = Image.FromFile("../../Resources/" + peke.ImgBack);
+                    casePeke.PnlImgPeke.BackgroundImage = Image.FromFile("../../Resources/" + peke.ImgFront);
                     casePeke.LblNomI.Text = peke.Name;
                     casePeke.LblTypeI.Text = peke.Name;
                     casePeke.LblCapturerI.Text = "Non";

@@ -31,9 +31,7 @@ namespace Pekeman
         {
             InitializeComponent();
         }
-
         
-
         public void InitializeMap(FrmPekeman frm)
         {
             DoubleBuffered = true;

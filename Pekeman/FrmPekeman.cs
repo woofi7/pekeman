@@ -25,14 +25,17 @@ namespace Pekeman
 
         public FrmPekeman()
         {
+            _Pekedex = new Pekedex();
             InitializeComponent();
             
-            
+
             WinStart.InitializeWinStart(this);
             MapPeke.player = _player;
+            
+            
             MapPeke.InitializeMap(this);
-            _Pekedex = new Pekedex();
             _Pekedex.InitializePekedex(MapPeke);
+
             ControlPanel.InitializeControlPanel(this);
             WinStart.Visible = false;
             
