@@ -64,8 +64,11 @@ namespace Pekeman
                 {
                     casePeke.PnlImgPeke.BackgroundImage = Image.FromFile("../../Resources/" + peke.ImgFront);
                     casePeke.LblNomI.Text = peke.Name;
-                    casePeke.LblTypeI.Text = peke.Name;
-                    casePeke.LblDescI.Text = peke.Name;
+                    for (int i = 0; i < peke.ElementType.Length; i++)
+                    {
+                        casePeke.LblTypeI.Text += peke.ElementType[i] + " ";
+                    }
+                    casePeke.LblDescI.Text = peke.Description;
                     if (isCaptured)
                     {
                         casePeke.LblCapturerI.Text = "Oui";

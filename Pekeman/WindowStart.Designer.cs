@@ -53,6 +53,7 @@
             this.BtnPekeman.TabIndex = 1;
             this.BtnPekeman.Text = "PeKeman";
             this.BtnPekeman.UseVisualStyleBackColor = true;
+            this.BtnPekeman.Click += new System.EventHandler(this.BtnPekeman_Click);
             // 
             // BtnOption
             // 

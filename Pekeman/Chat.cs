@@ -16,5 +16,10 @@ namespace Pekeman
         {
             InitializeComponent();
         }
+
+        public void ChangeChatText(String msg)
+        {
+            Content.Text = msg;
+        }
     }
 }

@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Pekeman.Entity;
 
 namespace Pekeman
 {
     public partial class WindowStart : CustomGUI
     {
+        private CapturedPekeman CapPeke;
         private bool PekedexOuvert = false;
+        private bool PekeListOuvert = false;
         private FrmPekeman FrmPeke;
+        private Player player;
         public WindowStart()
         {
             InitializeComponent();
@@ -22,7 +26,8 @@ namespace Pekeman
         public void InitializeWinStart(FrmPekeman frmPekeman)
         {
             FrmPeke = frmPekeman;
-            
+            player = frmPekeman.ThePlayer;
+            CapPeke = frmPekeman.CapPeke;
         }
 
         private void BtnPekedex_Click(object sender, EventArgs e)
@@ -62,6 +67,25 @@ namespace Pekeman
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             FrmPeke.Menu.Dispose();
+        }
+
+        private void BtnPekeman_Click(object sender, EventArgs e)
+        {
+
+            if (!PekeListOuvert)
+            {
+                PekeListOuvert = !PekeListOuvert;
+                Point p = new Point(0, 0);
+                CapPeke.Location = p;
+                CapPeke.FillTableWithPekeman();
+                FrmPeke.MapPeke.Controls.Add(CapPeke);
+                FrmPeke.Pekedex.Visible = PekeListOuvert;
+            }
+            else
+            {
+                PekeListOuvert = !PekeListOuvert;
+                FrmPeke.Pekedex.Visible = PekeListOuvert;
+            }
         }
     }
 }

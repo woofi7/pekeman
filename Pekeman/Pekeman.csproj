@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapturedPekeman.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CapturedPekeman.Designer.cs">
+      <DependentUpon>CapturedPekeman.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Npc.cs" />
     <Compile Include="Entity\Player.cs" />
@@ -126,6 +132,9 @@
     </Compile>
     <EmbeddedResource Include="BattleManager.resx">
       <DependentUpon>BattleManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapturedPekeman.resx">
+      <DependentUpon>CapturedPekeman.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CasePekedex.resx">
       <DependentUpon>CasePekedex.cs</DependentUpon>

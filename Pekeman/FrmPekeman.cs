@@ -19,9 +19,9 @@ namespace Pekeman
         public Player ThePlayer;
         private FrmMainMenu _menu;
         public Pokemon[] PokemonList;
-
+        
         public Pekedex Pekedex;
-
+        public CapturedPekeman CapPeke;
         public bool OptionsMenu;
 
         public FrmPekeman(FrmMainMenu menu) : this()
@@ -32,6 +32,7 @@ namespace Pekeman
         public FrmPekeman()
         {
             Pekedex = new Pekedex();
+            
             InitializeComponent();
             InitializeFrmPekeman();
         }
@@ -43,6 +44,7 @@ namespace Pekeman
             MapPeke.InitializeMap(this);
             Pekedex.InitializePekedex(MapPeke);
             ControlPanel.InitializeControlPanel(this);
+            CapPeke = new CapturedPekeman(this);
         }
 
         public void LoadPokemon()
