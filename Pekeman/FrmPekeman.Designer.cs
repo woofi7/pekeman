@@ -1,4 +1,6 @@
-﻿namespace Pekeman
+﻿using Pekeman.Map2;
+
+namespace Pekeman
 {
     partial class FrmPekeman
     {
@@ -31,7 +33,7 @@
             this.components = new System.ComponentModel.Container();
             this.timerRender = new System.Windows.Forms.Timer(this.components);
             this.Deplacement = new System.Windows.Forms.Timer(this.components);
-            this.MapPeke = new Pekeman.Map();
+            this.MapPeke = new Map();
             this.WinStart = new Pekeman.WindowStart();
             this.ControlPanel = new Pekeman.ControlPanel();
             this.Chat = new Pekeman.Chat();

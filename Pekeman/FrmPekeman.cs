@@ -4,25 +4,24 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Pekeman.Entity;
 
 namespace Pekeman
 {
     public partial class FrmPekeman : Form
     {
-        private readonly Player _player = new Player();
-        public FrmMainMenu _menu;
+        public Player ThePlayer;
+        private FrmMainMenu _menu;
+        public Pokemon[] PokemonList;
 
+        public Pekedex Pekedex;
 
-        public Pekedex _Pekedex;
-
-        public bool RightMovement;
-        public bool LeftMovement;
-        public bool UpMovement;
-        public bool DownMovement;
         public bool OptionsMenu;
 
         public FrmPekeman(FrmMainMenu menu) : this()
@@ -32,145 +31,93 @@ namespace Pekeman
 
         public FrmPekeman()
         {
-            _Pekedex = new Pekedex();
+            Pekedex = new Pekedex();
             InitializeComponent();
-            
+            InitializeFrmPekeman();
+        }
 
+        private void InitializeFrmPekeman()
+        {
+            LoadPokemon();
             WinStart.InitializeWinStart(this);
-            MapPeke.player = _player;
-            
-            
             MapPeke.InitializeMap(this);
-            _Pekedex.InitializePekedex(MapPeke);
-
+            Pekedex.InitializePekedex(MapPeke);
             ControlPanel.InitializeControlPanel(this);
         }
-        
+
+        public void LoadPokemon()
+        {
+            try
+            {
+                JsonSerializer serializer = new JsonSerializer();
+
+                using (StreamReader sw = new StreamReader("../../../pekeman.json"))
+                using (JsonReader reader = new JsonTextReader(sw))
+                {
+                    PokemonList = serializer.Deserialize<Pokemon[]>(reader);
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.A:
-                case Keys.Left:
-                    LeftMovement = true;
-                    break;
-                case Keys.D:
-                case Keys.Right:
-                    RightMovement = true;
-                    break;
-                case Keys.W:
-                case Keys.Up:
-                    UpMovement = true;
-                    break;
-                case Keys.S:
-                case Keys.Down:
-                    DownMovement = true;
-                    break;
-            }
+            ThePlayer.KeyPress(e.KeyCode, true);
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.A:
-                case Keys.Left:
-                    LeftMovement = false;
-                    break;
-                case Keys.D:
-                case Keys.Right:
-                    RightMovement = false;
-                    break;
-                case Keys.W:
-                case Keys.Up:
-                    UpMovement = false;
-                    break;
-                case Keys.S:
-                case Keys.Down:
-                    DownMovement = false;
-                    break;
-                case Keys.F3:
-                    Debug.DebugMode = !Debug.DebugMode;
-                    break;
-            }
+            ThePlayer.KeyPress(e.KeyCode, false);
         }
 
-        private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
-        private bool _pekedesShown = false;
 
+        private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
+        /// <summary>
+        /// Tick pour le déplacement du joueur dans la map.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             long ellapsed = _stopwatch.ElapsedMilliseconds;
             _stopwatch.Reset();
             _stopwatch.Restart();
+            double ellapsedSeconds = ellapsed / 1000f;
 
-            const float baseSpeed = 128; // Pixel/seconds
-            float ellapsedSeconds = ellapsed / 1000f;
-            float distance = 0;
-
-            if (RightMovement)
-            {
-                distance = ellapsedSeconds * baseSpeed;
-                _player.Angle = 0;
-            }
-            else if (LeftMovement)
-            {
-                distance = ellapsedSeconds * baseSpeed;
-                _player.Angle = Math.PI;
-            }
-
-            else if (UpMovement)
-            {
-                distance = ellapsedSeconds * baseSpeed;
-                _player.Angle = Math.PI / 2;
-            }
-            else if (DownMovement)
-            {
-                distance = ellapsedSeconds * baseSpeed;
-                _player.Angle = 3 * Math.PI / 2;
-            }
-            MapPeke.MovePlayer(distance);
-
+            ThePlayer.MovePlayer(ellapsedSeconds);
             Refresh();
+        }
+
+        /// <summary>
+        /// Tick pour le déplacement des membre de l'entité.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Deplacement_Tick(object sender, EventArgs e)
+        {
+            ThePlayer.UpdateMovementAnimation();
+
+            foreach (Npc npc in Npc.NpcList)
+            {
+                npc.UpdateMovementAnimation();
+            }
         }
 
         public void ShowPekedex(bool i)
         {
             if (i)
             {
-                _Pekedex.Location = new Point(0, 0);
-                MapPeke.Controls.Add(_Pekedex);
-                _Pekedex.Visible = true;
+                Pekedex.Location = new Point(0, 0);
+                MapPeke.Controls.Add(Pekedex);
+                Pekedex.Visible = true;
             }
             else
             {
-                _Pekedex.Visible = false;
+                Pekedex.Visible = false;
             }
-
-        }
-
-        private void Deplacement_Tick(object sender, EventArgs e)
-        {
-            if (RightMovement || LeftMovement || UpMovement || DownMovement)
-            {
-                _player.MovementAnimation++;
-
-                if (_player.MovementAnimation == 3)
-                {
-                    _player.MovementAnimation = 0;
-                }
-            }
-
-            MapPeke.UpdateMovementAnimation();
-        }
-
-        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _menu.Dispose();
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
         }
     }

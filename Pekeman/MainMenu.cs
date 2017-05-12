@@ -23,7 +23,7 @@ namespace Pekeman
         private void BtnPlay_Click(object sender, EventArgs e)
         {
             Hide();
-            _frmPekeman.MapPeke.player.Name = TxtName.Text;
+            _frmPekeman.ThePlayer.Name = TxtName.Text;
             _frmPekeman.Visible = true;
         }
 

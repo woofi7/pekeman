@@ -31,14 +31,14 @@ namespace Pekeman
             {
                 PekedexOuvert = !PekedexOuvert;
                 Point p = new Point(0, 0);
-                FrmPeke._Pekedex.Location = p;
-                FrmPeke.MapPeke.Controls.Add(FrmPeke._Pekedex);
-                FrmPeke._Pekedex.Visible = PekedexOuvert;
+                FrmPeke.Pekedex.Location = p;
+                FrmPeke.MapPeke.Controls.Add(FrmPeke.Pekedex);
+                FrmPeke.Pekedex.Visible = PekedexOuvert;
             }
             else
             {
                 PekedexOuvert = !PekedexOuvert;
-                FrmPeke._Pekedex.Visible = PekedexOuvert;
+                FrmPeke.Pekedex.Visible = PekedexOuvert;
             }
             
             
@@ -61,7 +61,7 @@ namespace Pekeman
 
         private void BtnQuit_Click(object sender, EventArgs e)
         {
-            FrmPeke._menu.Dispose();
+            FrmPeke.Menu.Dispose();
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Pekeman.Entity;
+using Pekeman.Map2;
 
 namespace Pekeman
 {
@@ -42,14 +44,14 @@ namespace Pekeman
 
       private void NumeroterPekedex()
         {
-            CaseBulbusaure.LblNumI.Text = _map.PokemonList[0].Id;
-            CaseCharmender.LblNumI.Text = _map.PokemonList[1].Id;
-            CaseSquirtle.LblNumI.Text = _map.PokemonList[2].Id;
-            CaseCaterpie.LblNumI.Text = _map.PokemonList[3].Id;
-            CasePidgey.LblNumI.Text = _map.PokemonList[4].Id;
-            CaseRattata.LblNumI.Text = _map.PokemonList[5].Id;
-            CasePikachu.LblNumI.Text = _map.PokemonList[6].Id;
-            CaseChikorita.LblNumI.Text = _map.PokemonList[7].Id;
+            CaseBulbusaure.LblNumI.Text = _map.FrmPekeman.PokemonList[0].Id;
+            CaseCharmender.LblNumI.Text = _map.FrmPekeman.PokemonList[1].Id;
+            CaseSquirtle.LblNumI.Text = _map.FrmPekeman.PokemonList[2].Id;
+            CaseCaterpie.LblNumI.Text = _map.FrmPekeman.PokemonList[3].Id;
+            CasePidgey.LblNumI.Text = _map.FrmPekeman.PokemonList[4].Id;
+            CaseRattata.LblNumI.Text = _map.FrmPekeman.PokemonList[5].Id;
+            CasePikachu.LblNumI.Text = _map.FrmPekeman.PokemonList[6].Id;
+            CaseChikorita.LblNumI.Text = _map.FrmPekeman.PokemonList[7].Id;
             
         }
 
@@ -79,7 +81,7 @@ namespace Pekeman
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            _map.frmPekeman.ShowPekedex(false);
+            _map.FrmPekeman.ShowPekedex(false);
         }
     }
 }
