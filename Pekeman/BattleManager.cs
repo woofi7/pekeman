@@ -52,8 +52,6 @@ namespace Pekeman
             placerComp();
             PbHpHero.Value = Hero.CurrentHp;
             nbAttempt = 0;
-            
-            
         }
 
         private void DeterminerPokemon()
@@ -147,6 +145,11 @@ namespace Pekeman
             {
                 WildAttack();
             }
+        }
+
+        public void HealPokemon()
+        {
+            Hero.CurrentHp = Hero.MaximumHp;
         }
     }
 }
