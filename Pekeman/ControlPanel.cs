@@ -13,7 +13,7 @@ namespace Pekeman
     public partial class ControlPanel : CustomGUI
     {
         private FrmPekeman FrmPeke;
-        private bool WinOpen = false;
+
         public ControlPanel()
         {
             InitializeComponent();
@@ -72,16 +72,7 @@ namespace Pekeman
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            if (!WinOpen)
-            {
-                WinOpen = true;
-                FrmPeke.WinStart.Visible = WinOpen;
-            }
-            else
-            {
-                WinOpen = false;
-                FrmPeke.WinStart.Visible = WinOpen;
-            }
+            FrmPeke.MapPeke.Battle.StartBattle();
         }
     }
 }

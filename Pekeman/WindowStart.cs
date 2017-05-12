@@ -12,9 +12,8 @@ namespace Pekeman
 {
     public partial class WindowStart : CustomGUI
     {
-        
+        private bool PekedexOuvert = false;
         private FrmPekeman FrmPeke;
-        private Pekedex _pekedex;
         public WindowStart()
         {
             InitializeComponent();
@@ -28,13 +27,41 @@ namespace Pekeman
 
         private void BtnPekedex_Click(object sender, EventArgs e)
         {
+            if (!PekedexOuvert)
+            {
+                PekedexOuvert = !PekedexOuvert;
+                Point p = new Point(0, 0);
+                FrmPeke._Pekedex.Location = p;
+                FrmPeke.MapPeke.Controls.Add(FrmPeke._Pekedex);
+                FrmPeke._Pekedex.Visible = PekedexOuvert;
+            }
+            else
+            {
+                PekedexOuvert = !PekedexOuvert;
+                FrmPeke._Pekedex.Visible = PekedexOuvert;
+            }
             
-            //Point p = new Point(FrmPeke.MapPeke.Size.Width / 2 - this.Size.Width / 2, FrmPeke.MapPeke.Size.Height / 2 - this.Size.Height / 2);
+            
+            
+        }
+
+        private void BtnOption_Click(object sender, EventArgs e)
+        {
+            WinOption option = new WinOption();
             Point p = new Point(0, 0);
-            FrmPeke._Pekedex.Location = p;
-            FrmPeke.MapPeke.Controls.Add(FrmPeke._Pekedex);
-            FrmPeke._Pekedex.Visible = true;
-            
+            option.Location = p;
+
+            FrmPeke.MapPeke.Controls.Add(option);
+        }
+
+        private void BtnAPropos_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(FrmPeke,"PeKeman\nFait par les valeureux étudiants\nNicolas Signori et Alex Gravel");
+        }
+
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+            FrmPeke.Dispose();
         }
     }
 }

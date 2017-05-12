@@ -62,6 +62,7 @@
             this.BtnOption.TabIndex = 2;
             this.BtnOption.Text = "Option";
             this.BtnOption.UseVisualStyleBackColor = true;
+            this.BtnOption.Click += new System.EventHandler(this.BtnOption_Click);
             // 
             // BtnQuit
             // 
@@ -71,6 +72,7 @@
             this.BtnQuit.TabIndex = 4;
             this.BtnQuit.Text = "Quitter";
             this.BtnQuit.UseVisualStyleBackColor = true;
+            this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
             // BtnAPropos
             // 
@@ -80,6 +82,7 @@
             this.BtnAPropos.TabIndex = 3;
             this.BtnAPropos.Text = "À propos";
             this.BtnAPropos.UseVisualStyleBackColor = true;
+            this.BtnAPropos.Click += new System.EventHandler(this.BtnAPropos_Click);
             // 
             // WindowStart
             // 

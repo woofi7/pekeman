@@ -113,8 +113,7 @@ namespace Pekeman
 
         public int Dammage(Pokemon attacker, Pokemon defender)
         {
-
-            double a = attacker.Attack * 1.5;
+            double a = attacker.Attack;
             double b = attacker.Attack;
             double c = CritMultiplyer();
             double d = defender.Defence;

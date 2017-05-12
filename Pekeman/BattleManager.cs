@@ -18,7 +18,7 @@ namespace Pekeman
         private static int nbAttempt;
         private Random rng = new Random();
         private Player _Player;
-        private FrmPekeman frmPekeman;
+        private Pekedex pekedex;
         public BattleManager(Map map)
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Pekeman
             Hero = new Pokemon();
             Hero.Level = 3;
             DoubleBuffered = true;
-            Hero = _Map.PokemonList.ElementAt(1);
+            Hero = _Map.PokemonList[1];
             _Player.InitialPokemon = Hero;
             PbHpHero.Maximum = Hero.MaximumHp;
             PbHpHero.Value = Hero.CurrentHp;
@@ -39,19 +39,19 @@ namespace Pekeman
 
         public void InitialzeBattleManager(FrmPekeman frm)
         {
-            frmPekeman = frm;
+            pekedex = frm._Pekedex;
+            
         }
         public void StartBattle()
         {
+            pekedex.AddPeke(Hero, true);
             Wild = new Pokemon();
-            
             DeterminerPokemon();
             PnlWild.BackgroundImage = Image.FromFile("../../Resources/" + Wild.ImgFront);
             this.Visible = true;
             placerComp();
             PbHpHero.Value = Hero.CurrentHp;
             nbAttempt = 0;
-            
         }
 
         private void DeterminerPokemon()
@@ -111,7 +111,7 @@ namespace Pekeman
             else
             {
                 this.Visible = false;
-                frmPekeman._Pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild, false);
                 _Map.PartieTerminer();
             }
         }
@@ -122,7 +122,7 @@ namespace Pekeman
             if (Hero.CanEscape(Wild, nbAttempt))
             {
                 this.Visible = false;
-                frmPekeman._Pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild,false);
                 nbAttempt = 0;
             }
             else
@@ -137,13 +137,19 @@ namespace Pekeman
             
             if (Hero.CanBeCatch(Wild))
             {
-                frmPekeman._Pekedex.AddPeke(Wild);
+                pekedex.AddPeke(Wild, true);
+                _Player.PokemonList.Add(Wild);
                 this.Visible = false;
             }
             else
             {
                 WildAttack();
             }
+        }
+
+        public void HealPokemon()
+        {
+            Hero.CurrentHp = Hero.MaximumHp;
         }
     }
 }
