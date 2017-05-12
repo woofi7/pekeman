@@ -49,6 +49,8 @@ namespace Pekeman
             _mapData = data;
             Thread t = new Thread(MoveNpc);
             t.Start();
+
+
         }
 
         private Stopwatch _stopwatch;

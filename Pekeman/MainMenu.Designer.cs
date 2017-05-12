@@ -28,16 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.BtnPlay = new System.Windows.Forms.Label();
+            this.BtnQuitter = new System.Windows.Forms.Label();
+            this.TxtName = new System.Windows.Forms.TextBox();
+            this.LblName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // BtnPlay
             // 
-            this.label1.Location = new System.Drawing.Point(349, 97);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 38);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "BtnPlay";
+            this.BtnPlay.BackColor = System.Drawing.Color.Transparent;
+            this.BtnPlay.Location = new System.Drawing.Point(349, 99);
+            this.BtnPlay.Name = "BtnPlay";
+            this.BtnPlay.Size = new System.Drawing.Size(219, 38);
+            this.BtnPlay.TabIndex = 0;
+            this.BtnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
+            // 
+            // BtnQuitter
+            // 
+            this.BtnQuitter.BackColor = System.Drawing.Color.Transparent;
+            this.BtnQuitter.Location = new System.Drawing.Point(18, 233);
+            this.BtnQuitter.Name = "BtnQuitter";
+            this.BtnQuitter.Size = new System.Drawing.Size(219, 38);
+            this.BtnQuitter.TabIndex = 1;
+            this.BtnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
+            // 
+            // TxtName
+            // 
+            this.TxtName.Location = new System.Drawing.Point(352, 76);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(100, 20);
+            this.TxtName.TabIndex = 2;
+            this.TxtName.Text = "Denis";
+            // 
+            // LblName
+            // 
+            this.LblName.AutoSize = true;
+            this.LblName.BackColor = System.Drawing.Color.Transparent;
+            this.LblName.Location = new System.Drawing.Point(349, 60);
+            this.LblName.Name = "LblName";
+            this.LblName.Size = new System.Drawing.Size(79, 13);
+            this.LblName.TabIndex = 3;
+            this.LblName.Text = "Nom du joueur:";
             // 
             // FrmMainMenu
             // 
@@ -45,15 +76,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Pekeman.Properties.Resources.mainMenu;
             this.ClientSize = new System.Drawing.Size(589, 332);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LblName);
+            this.Controls.Add(this.TxtName);
+            this.Controls.Add(this.BtnQuitter);
+            this.Controls.Add(this.BtnPlay);
             this.Name = "FrmMainMenu";
             this.Text = "Pekeman";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label BtnPlay;
+        private System.Windows.Forms.Label BtnQuitter;
+        private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.Label LblName;
     }
 }

@@ -61,7 +61,7 @@ namespace Pekeman
 
         private void BtnQuit_Click(object sender, EventArgs e)
         {
-            FrmPeke.Dispose();
+            FrmPeke._menu.Dispose();
         }
     }
 }

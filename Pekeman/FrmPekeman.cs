@@ -14,6 +14,8 @@ namespace Pekeman
     public partial class FrmPekeman : Form
     {
         private readonly Player _player = new Player();
+        public FrmMainMenu _menu;
+
 
         public Pekedex _Pekedex;
 
@@ -22,6 +24,11 @@ namespace Pekeman
         public bool UpMovement;
         public bool DownMovement;
         public bool OptionsMenu;
+
+        public FrmPekeman(FrmMainMenu menu) : this()
+        {
+            _menu = menu;
+        }
 
         public FrmPekeman()
         {
@@ -37,8 +44,6 @@ namespace Pekeman
             _Pekedex.InitializePekedex(MapPeke);
 
             ControlPanel.InitializeControlPanel(this);
-            
-            
         }
         
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -161,7 +166,7 @@ namespace Pekeman
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            _menu.Dispose();
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)

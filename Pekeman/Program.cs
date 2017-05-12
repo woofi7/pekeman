@@ -16,7 +16,7 @@ namespace Pekeman
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPekeman());
+            Application.Run(new FrmMainMenu());
         }
     }
 }

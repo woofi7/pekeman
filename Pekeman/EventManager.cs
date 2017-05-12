@@ -13,7 +13,7 @@ namespace Pekeman
             Battle = battle;
         }
 
-        public void CheckEvent(Map.MapEvent[] mapDataEvents, double curX, double curY, double prevX, double prevY, FrmPekeman FrmPeke)
+        public void CheckEvent(Map.MapEvent[] mapDataEvents, double curX, double curY, double prevX, double prevY, FrmPekeman frmPeke)
         {
             double currentX = Math.Floor(curX / 32);
             double currentY = Math.Floor(curY / 32);
@@ -40,11 +40,10 @@ namespace Pekeman
                 switch (mapEvent.EventType)
                 {
                     case EventTypeEnum.EnterPokedex:
-                        Point p = new Point(0, 0);
-                        FrmPeke.ShowPekedex(true);
+                        frmPeke.ShowPekedex(true);
                         break;
                     case EventTypeEnum.EnterPekecenter:
-                        //TODO: Heal pekemon
+                        frmPeke.MapPeke.Battle.HealPokemon();
                         break;
                     case EventTypeEnum.MeetPokemon:
                         Battle.StartBattle();
