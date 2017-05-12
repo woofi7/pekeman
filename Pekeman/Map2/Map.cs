@@ -36,7 +36,7 @@ namespace Pekeman.Map2
             FrmPekeman = frm;
 
             LoadMap("../../../mapTemplate.json");
-            _player = new Player(MapData);
+            _player = new Player(this);
             FrmPekeman.ThePlayer = _player;
 
             FrmPekeman.ThePlayer.X = MapData.Spawn.X * 32 + 10;

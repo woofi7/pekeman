@@ -17,12 +17,16 @@ namespace Pekeman.Entity
         public bool UpMovement;
         public bool DownMovement;
 
-        public Player(Map2.MapDataJson mapData, string name) : base(mapData, name)
+        private Map _map;
+
+        public Player(Map map, string name) : base(map.MapData, name)
         {
+            _map = map;
         }
 
-        public Player(Map2.MapDataJson mapData) : base(mapData)
+        public Player(Map map) : base(map.MapData)
         {
+            _map = map;
         }
 
         /// <summary>
@@ -86,7 +90,7 @@ namespace Pekeman.Entity
 
             MoveEntity(distance);
 
-            if (X / 32 != oldX / 32 && Y / 32 != oldY / 32)
+            if ((int) (X / 32) != (int) (oldX / 32) || (int) (Y / 32) != (int) (oldY / 32))
             {
                 CheckEvent();
             }
@@ -100,7 +104,10 @@ namespace Pekeman.Entity
                 int startY = mapEvent.Area.From.Y;
                 int endX = mapEvent.Area.To.X;
                 int endY = mapEvent.Area.To.Y;
-                if (X / 32 < startX || X / 32 > endX || Y / 32 < startY || Y / 32 > endY) continue;
+                if (X / 32 < startX) continue;
+                if (X / 32 > endX) continue;
+                if (Y / 32 < startY) continue;
+                if (Y / 32 > endY) continue;
 
                 int chancesMultiplicator = (int) (100 / (mapEvent.Chances * 100));
 
@@ -110,17 +117,18 @@ namespace Pekeman.Entity
                 switch (mapEvent.EventType)
                 {
                     case EventTypeEnum.EnterPokedex:
-                        //TODO: frmPeke.ShowPekedex(true);
+                        _map.FrmPekeman.ShowPekedex(true);
                         break;
                     case EventTypeEnum.EnterPekecenter:
-                        //TODO: frmPeke.MapPeke.Battle.HealPokemon();
+                        _map.Battle.HealPokemon();
                         break;
                     case EventTypeEnum.MeetPokemon:
-                        //TODO: Battle.StartBattle();
+                        _map.Battle.StartBattle();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+                return;
             }
         }
 
