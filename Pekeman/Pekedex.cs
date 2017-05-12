@@ -39,6 +39,7 @@ namespace Pekeman
             ListeCase.Add(CasePikachu);
             ListeCase.Add(CaseChikorita);
         }
+
       private void NumeroterPekedex()
         {
             CaseBulbusaure.LblNumI.Text = _map.PokemonList[0].Id;

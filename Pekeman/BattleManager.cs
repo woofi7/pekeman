@@ -35,7 +35,7 @@ namespace Pekeman
             PbHpHero.Value = Hero.CurrentHp;
             LblNomHero.Text = Hero.Name;
             Hero.CurrentHp = Hero.MaximumHp;
-            
+
         }
 
         public void InitialzeBattleManager(FrmPekeman frm)
