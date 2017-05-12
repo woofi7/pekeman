@@ -30075,7 +30075,7 @@
             }
         },
         {
-            "eventType": "EnterPokedex",
+            "eventType": "EnterPekecenter",
             "chances": 1.0,
             "area": {
                 "from": {
@@ -30089,7 +30089,7 @@
             }
         },
         {
-            "eventType": "EnterPekecenter",
+            "eventType": "EnterPokedex",
             "chances": 1.0,
             "area": {
                 "from": {
@@ -30103,7 +30103,7 @@
             }
         },
         {
-            "eventType": "EnterPekecenter",
+            "eventType": "EnterPokedex",
             "chances": 1.0,
             "area": {
                 "from": {
@@ -30117,7 +30117,7 @@
             }
         },
         {
-            "eventType": "EnterPokedex",
+            "eventType": "EnterPekecenter",
             "chances": 1.0,
             "area": {
                 "from": {
@@ -30131,7 +30131,7 @@
             }
         },
         {
-            "eventType": "EnterPokedex",
+            "eventType": "EnterPekecenter",
             "chances": 1.0,
             "area": {
                 "from": {
