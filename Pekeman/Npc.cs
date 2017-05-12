@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 
 namespace Pekeman
 {
     public class Npc
     {
-        public Map.MapData mapData;
+        public Map.MapData _mapData;
 
         public int MovementAnimation { get; set; }
         public double ScreenX { get; set; }
@@ -44,12 +46,33 @@ namespace Pekeman
 
         public void StartThread(Map.MapData data)
         {
-            mapData = data;
+            _mapData = data;
             Thread t = new Thread(MoveNpc);
             t.Start();
         }
 
         private Stopwatch _stopwatch;
+
+        public int GetCellIndex(int x, int y)
+        {
+            return x * _mapData.Size.Width + y;
+        }
+
+        public IEnumerable<int> GetCellIndexUnderPlayer()
+        {
+            int posXMin = (int) Math.Floor((ScreenX - 8) / 32);
+            int posXMax = (int) Math.Floor((ScreenX + 8) / 32);
+            int posYMin = (int) Math.Floor((ScreenY - 0) / 32);
+            int posYMax = (int) Math.Floor((ScreenY + 8) / 32);
+
+            for (int x = posXMin; x <= posXMax; x++)
+            {
+                for (int y = posYMin; y <= posYMax; y++)
+                {
+                    yield return GetCellIndex(x, y);
+                }
+            }
+        }
 
         public void MoveNpc()
         {
@@ -80,56 +103,22 @@ namespace Pekeman
                 ScreenY -= ellapsedSeconds * Speed * 32 * Math.Sin(Angle);
 
                 //Out of map
-                if (ScreenX < 0 || ScreenX + 32 > 320)
+                if (ScreenX < 0 || ScreenX + 32 > _mapData.Size.Width * 32)
                 {
                     ScreenX = oldX;
                     timeLeft = 0;
                 }
 
-                if (ScreenY < 0 || ScreenY+ 32 > 320)
+                if (ScreenY < 0 || ScreenY+ 32 > _mapData.Size.Height * 32)
                 {
                     ScreenY = oldY;
                     timeLeft = 0;
                 }
 
-                int posX = (int) Math.Floor(ScreenX / 32);
-                int posY = (int) Math.Floor(ScreenY / 32);
-                int posXMin = (int) Math.Floor((ScreenX - 8) / 32);
-                int posXMax = (int) Math.Floor((ScreenX + 16) / 32);
-                int posYMin = (int) Math.Floor((ScreenY - 8) / 32);
-                int posYMax = (int) Math.Floor((ScreenY + 16) / 32);
-                int collisionIndex = posXMin * mapData.Size.Width + (int) Math.Floor(ScreenY / 32);
-
-                if (collisionIndex >= 0 && !mapData.Layers.Collision[collisionIndex])
+                if (GetCellIndexUnderPlayer().Any(i => _mapData.Layers.Collision[i]))
                 {
                     ScreenX = oldX;
                     ScreenY = oldY;
-                }
-                collisionIndex = posXMax * mapData.Size.Width + (int) Math.Floor(ScreenY / 32);
-                if (collisionIndex < mapData.Size.Width * mapData.Size.Width && !mapData.Layers.Collision[collisionIndex])
-                {
-                    ScreenX = oldX;
-                    ScreenY = oldY;
-                }
-                if (posYMax > posY)
-                {
-                    collisionIndex = posX * mapData.Size.Width + posYMax;
-                    //System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
-                    if (!mapData.Layers.Collision[collisionIndex])
-                    {
-                        ScreenX = oldX;
-                        ScreenY = oldY;
-                    }
-                }
-                else if (posYMin < posY)
-                {
-                    collisionIndex = posX * mapData.Size.Width + posYMin;
-                    //System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + mapData.Layers.Collision[collisionIndex]);
-                    if (!mapData.Layers.Collision[collisionIndex])
-                    {
-                        ScreenX = oldX;
-                        ScreenY = oldY;
-                    }
                 }
 
                 Thread.Sleep(30);

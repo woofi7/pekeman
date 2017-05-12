@@ -69,5 +69,10 @@ namespace Pekeman
             }
           
         }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            _map.frmPekeman.ShowPekedex(false);
+        }
     }
 }

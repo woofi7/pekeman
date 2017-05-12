@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Pekeman
 {
@@ -12,7 +13,7 @@ namespace Pekeman
             Battle = battle;
         }
 
-        public void CheckEvent(Map.MapEvent[] mapDataEvents, double curX, double curY, double prevX, double prevY)
+        public void CheckEvent(Map.MapEvent[] mapDataEvents, double curX, double curY, double prevX, double prevY, FrmPekeman FrmPeke)
         {
             double currentX = Math.Floor(curX / 32);
             double currentY = Math.Floor(curY / 32);
@@ -39,7 +40,8 @@ namespace Pekeman
                 switch (mapEvent.EventType)
                 {
                     case EventTypeEnum.EnterPokedex:
-                        //TODO: Open pokedex
+                        Point p = new Point(0, 0);
+                        FrmPeke.ShowPekedex(true);
                         break;
                     case EventTypeEnum.EnterPekecenter:
                         //TODO: Heal pekemon

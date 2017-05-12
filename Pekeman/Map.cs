@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -25,7 +27,7 @@ namespace Pekeman
         private Image _fillImage;
         private const int TileSize = 32;
         private Point _centerPoint;
-        private FrmPekeman frmPekeman;
+        public FrmPekeman frmPekeman;
 
         public Map()
         {
@@ -148,8 +150,8 @@ namespace Pekeman
                 Graphics g = e.Graphics;
                 _centerPoint = new Point(Width / 2, Height / 2);
 
-                double centeredXCorner = Width / 2D - (_mapData.Size.Width / 2D + player.ScreenX);
-                double centeredYCorner = Height / 2D - (_mapData.Size.Height / 2D + player.ScreenY);
+                double centeredXCorner = Width / 2D - (player.ScreenX);
+                double centeredYCorner = Height / 2D - ( player.ScreenY);
 
                 DrawOutMap(centeredYCorner, centeredXCorner, g);
                 DrawBackground(centeredYCorner, centeredXCorner, g);
@@ -272,6 +274,10 @@ namespace Pekeman
                     int posY = y * TileSize * 2 + (int)( centeredYCorner - centeredYCorner / 64) - Height / 2;
                     int posX = x * TileSize * 2 + (int)( centeredXCorner - centeredXCorner / 64) - Width / 2;
 
+                    if (posX < -TileSize  * 2|| posY < -TileSize * 2 || posX > Width || posY > Height)
+                    {
+                        continue;
+                    }
                     g.DrawImageUnscaled(_fillImage, posX, posY, TileSize * 2, TileSize * 2);
                 }
             }
@@ -288,6 +294,10 @@ namespace Pekeman
                     int posY = (int) centeredYCorner + y * TileSize;
                     int posX = (int) centeredXCorner + x * TileSize;
 
+                    if (posX < -TileSize || posY < -TileSize || posX > Width || posY > Height)
+                    {
+                        continue;
+                    }
                     g.DrawImageUnscaled(sprite[tileIndexBackground], posX, posY, TileSize, TileSize);
                 }
             }
@@ -304,7 +314,32 @@ namespace Pekeman
                     int posY = (int) centeredYCorner + y * TileSize;
                     int posX = (int) centeredXCorner + x * TileSize;
 
+                    if (posX < -TileSize || posY < -TileSize || posX > Width || posY > Height)
+                    {
+                        continue;
+                    }
                     g.DrawImageUnscaled(sprite[tileIndexForeground], posX, posY, TileSize, TileSize);
+                }
+            }
+        }
+
+        public int GetCellIndex(int x, int y)
+        {
+            return x * _mapData.Size.Width + y;
+        }
+
+        public IEnumerable<int> GetCellIndexUnderPlayer()
+        {
+            int posXMin = (int) Math.Floor((player.ScreenX - 8) / 32);
+            int posXMax = (int) Math.Floor((player.ScreenX + 8) / 32);
+            int posYMin = (int) Math.Floor((player.ScreenY - 0) / 32);
+            int posYMax = (int) Math.Floor((player.ScreenY + 8) / 32);
+
+            for (int x = posXMin; x <= posXMax; x++)
+            {
+                for (int y = posYMin; y <= posYMax; y++)
+                {
+                    yield return GetCellIndex(x, y);
                 }
             }
         }
@@ -324,51 +359,27 @@ namespace Pekeman
             int posYMin = (int) Math.Floor((player.ScreenY - 8) / 32);
             int posYMax = (int) Math.Floor((player.ScreenY + 16) / 32);
 
+
             //Out of map
-            if (posXMin < 0 || posXMax > _mapData.Size.Width - 1)
+            if (player.ScreenX < 0 || player.ScreenX + 32 > _mapData.Size.Width * 32)
             {
                 player.ScreenX = oldX;
             }
-            else if (posYMin < 0 || posYMax > _mapData.Size.Height - 1)
+
+            if (player.ScreenY < 0 || player.ScreenY+ 32 > _mapData.Size.Height * 32)
             {
                 player.ScreenY = oldY;
             }
 
             //Collision
-            int collisionIndex = posXMin * _mapData.Size.Width + (int) Math.Floor(player.ScreenY / 32);
-            if (collisionIndex >= 0 && !_mapData.Layers.Collision[collisionIndex])
+
+            if (GetCellIndexUnderPlayer().Any(i => _mapData.Layers.Collision[i]))
             {
                 player.ScreenX = oldX;
                 player.ScreenY = oldY;
-            }
-            collisionIndex = posXMax * _mapData.Size.Width + (int) Math.Floor(player.ScreenY / 32);
-            if (collisionIndex < _mapData.Size.Width * _mapData.Size.Width && !_mapData.Layers.Collision[collisionIndex])
-            {
-                player.ScreenX = oldX;
-                player.ScreenY = oldY;
-            }
-            if (posYMax > posY)
-            {
-                collisionIndex = posX * _mapData.Size.Width + posYMax;
-                System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + _mapData.Layers.Collision[collisionIndex]);
-                if (!_mapData.Layers.Collision[collisionIndex])
-                {
-                    player.ScreenX = oldX;
-                    player.ScreenY = oldY;
-                }
-            }
-            else if (posYMin < posY)
-            {
-                collisionIndex = posX * _mapData.Size.Width + posYMin;
-                System.Diagnostics.Debug.WriteLine(posYMax + " " + posY + " " + _mapData.Layers.Collision[collisionIndex]);
-                if (!_mapData.Layers.Collision[collisionIndex])
-                {
-                    player.ScreenX = oldX;
-                    player.ScreenY = oldY;
-                }
             }
 
-            EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY);
+            EventZones.CheckEvent(_mapData.Events, player.ScreenX, player.ScreenY, oldX, oldY, frmPekeman);
         }
 
         [JsonObject(MemberSerialization.OptIn)]

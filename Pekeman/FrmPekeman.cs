@@ -88,6 +88,8 @@ namespace Pekeman
         }
 
         private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
+        private bool _pekedesShown = false;
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             long ellapsed = _stopwatch.ElapsedMilliseconds;
@@ -122,6 +124,21 @@ namespace Pekeman
             MapPeke.MovePlayer(distance);
 
             Refresh();
+        }
+
+        public void ShowPekedex(bool i)
+        {
+            if (i)
+            {
+                _Pekedex.Location = new Point(0, 0);
+                MapPeke.Controls.Add(_Pekedex);
+                _Pekedex.Visible = true;
+            }
+            else
+            {
+                _Pekedex.Visible = false;
+            }
+
         }
 
         private void Deplacement_Tick(object sender, EventArgs e)

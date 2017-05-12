@@ -19,7 +19,7 @@ namespace Pekeman
         public double ScreenY { get; set; }
         public int MovementAnimation { get; set; } = 0;
         public double Angle { get; set; }
-        public double Speed { get; set; } = 1;
+        public double Speed { get; set; } = 1.5;
         public double BaseSpeed { get; set; } = 128; //Pixel/second
         public double HitboxSize = 32;
         public Rotation Facing = new Rotation();

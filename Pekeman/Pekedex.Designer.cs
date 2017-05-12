@@ -37,6 +37,7 @@
             this.CaseSquirtle = new Pekeman.CasePekedex();
             this.CaseCharmender = new Pekeman.CasePekedex();
             this.CaseBulbusaure = new Pekeman.CasePekedex();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,10 +128,21 @@
             this.CaseBulbusaure.Size = new System.Drawing.Size(400, 140);
             this.CaseBulbusaure.TabIndex = 0;
             // 
+            // BtnClose
+            // 
+            this.BtnClose.Location = new System.Drawing.Point(775, 602);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(75, 23);
+            this.BtnClose.TabIndex = 1;
+            this.BtnClose.Text = "Fermer";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // Pekedex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "Pekedex";
@@ -151,5 +163,6 @@
         private CasePekedex CaseSquirtle;
         private CasePekedex CaseCharmender;
         private CasePekedex CaseBulbusaure;
+        private System.Windows.Forms.Button BtnClose;
     }
 }

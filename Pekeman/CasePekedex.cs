@@ -15,6 +15,7 @@ namespace Pekeman
         public CasePekedex()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         private void CasePekedex_Load(object sender, EventArgs e)
